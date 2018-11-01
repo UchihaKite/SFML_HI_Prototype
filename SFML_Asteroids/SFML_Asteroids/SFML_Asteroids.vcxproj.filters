@@ -31,6 +31,12 @@
     <Filter Include="Source Files\ParticleSystem">
       <UniqueIdentifier>{6a576e48-376f-4d90-99f0-f5c3f379158c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GameStates">
+      <UniqueIdentifier>{cf2fe6a5-d32b-4cba-b8c9-79a88ccb0561}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameStates">
+      <UniqueIdentifier>{117c6b1e-6748-42b2-8f8e-f74e1de92d28}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -57,6 +63,12 @@
     <ClCompile Include="StarParticleSystem.cpp">
       <Filter>Source Files\ParticleSystem</Filter>
     </ClCompile>
+    <ClCompile Include="TitleScreenState.cpp">
+      <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreManager.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SoundContainer.h">
@@ -82,6 +94,12 @@
     </ClInclude>
     <ClInclude Include="StarParticleSystem.h">
       <Filter>Header Files\ParticleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScreenState.h">
+      <Filter>Header Files\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreManager.h">
+      <Filter>Header Files\Utilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

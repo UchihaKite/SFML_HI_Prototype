@@ -1,17 +1,1 @@
-﻿  Engine.cpp
-  GameState.cpp
-  Main.cpp
-c:\users\uchihakite\desktop\sfml_asteroids\sfml_asteroids\main.cpp(11): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\uchihakite\desktop\sfml_asteroids\sfml_asteroids\main.cpp(20): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
-  SoundContainer.cpp
-  StarParticleSystem.cpp
-c:\users\uchihakite\desktop\sfml_asteroids\sfml_asteroids\starparticlesystem.cpp(51): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\uchihakite\desktop\sfml_asteroids\sfml_asteroids\starparticlesystem.cpp(52): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\uchihakite\desktop\sfml_asteroids\sfml_asteroids\starparticlesystem.cpp(71): warning C4018: '<=': signed/unsigned mismatch
-c:\users\uchihakite\desktop\sfml_asteroids\sfml_asteroids\starparticlesystem.cpp(76): warning C4018: '<=': signed/unsigned mismatch
-c:\users\uchihakite\desktop\sfml_asteroids\sfml_asteroids\starparticlesystem.cpp(81): warning C4018: '<=': signed/unsigned mismatch
-  State.cpp
-  StateMachine.cpp
-  TextureHolder.cpp
-  Generating Code...
-  SFML_Asteroids.vcxproj -> C:\Users\UchihaKite\Desktop\SFML_Asteroids\Debug\SFML_Asteroids.exe
+﻿

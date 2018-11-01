@@ -138,21 +138,25 @@
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ScoreManager.cpp" />
     <ClCompile Include="SoundContainer.cpp" />
     <ClCompile Include="StarParticleSystem.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="TextureHolder.cpp" />
+    <ClCompile Include="TitleScreenState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="Instances.h" />
+    <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="SoundContainer.h" />
     <ClInclude Include="StarParticleSystem.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateMachine.h" />
     <ClInclude Include="TextureHolder.h" />
+    <ClInclude Include="TitleScreenState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

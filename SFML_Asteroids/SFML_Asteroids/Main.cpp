@@ -13,12 +13,23 @@ int main()
 	// Hide the Mouse Cursor
 	s_Window.setMouseCursorVisible(false);
 
+	// Background Music for the Game
+	// Use the SoundContainer
+	sf::Sound m_Song = SoundContainer::GetSound("Game Assets/Audio/Song.wav");
+	m_Song.setVolume(50); // Adjust the volume first
+	m_Song.play();
+	m_Song.setLoop(true); // Loop it
+
 	// Delcare Instance of the Engine
 	Engine s_Engine;
 
 	sf::Image s_StarImage;
 	s_StarImage.create(g_Resolution.x + 4, g_Resolution.y + 4, sf::Color::Black);
 
+	/*
+	Do not use the TextureContainer if you are using a "sf::Image"
+	variable to initialize your Texture variable
+	*/
 	sf::Texture s_StarTexture;
 	s_StarTexture.loadFromImage(s_StarImage);
 	s_StarTexture.setSmooth(false);
@@ -58,6 +69,8 @@ int main()
 
 			if (s_Event.type == sf::Event::Closed)
 			{
+				SoundContainer::Clear();
+				TextureHolder::Clear();
 				s_Window.close(); // Click the "X" to Close the Window/Game
 			}
 		}
