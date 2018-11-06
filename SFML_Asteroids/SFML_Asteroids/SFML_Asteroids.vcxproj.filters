@@ -37,6 +37,12 @@
     <Filter Include="Source Files\GameStates">
       <UniqueIdentifier>{117c6b1e-6748-42b2-8f8e-f74e1de92d28}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GameObjects">
+      <UniqueIdentifier>{e3dda0a0-4566-4cae-a695-a7f630d37cef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects">
+      <UniqueIdentifier>{3c245e48-d7ad-430f-bf0c-25a1a1b594e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -69,6 +75,12 @@
     <ClCompile Include="ScoreManager.cpp">
       <Filter>Source Files\Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SoundContainer.h">
@@ -100,6 +112,12 @@
     </ClInclude>
     <ClInclude Include="ScoreManager.h">
       <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

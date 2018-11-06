@@ -21,7 +21,11 @@ void ScoreManager::SetUpText()
 	m_ScoreText.setFont(m_Font);
 	m_ScoreText.setCharacterSize(30);
 	m_ScoreText.setFillColor(sf::Color::White);
-	m_ScoreText.setPosition(sf::VideoMode::getDesktopMode().width / 6.0f, sf::VideoMode::getDesktopMode().height / 5.25f);
+	m_ScoreText.setPosition(sf::VideoMode::getDesktopMode().width / 25.0f, sf::VideoMode::getDesktopMode().height / 30.0f);
+
+	std::stringstream s_SStream;
+	s_SStream << "Score: " << m_Score;
+	m_ScoreText.setString(s_SStream.str());
 
 	std::ifstream s_InputFile("Game Assets/GameData/Score.txt");
 	/*
@@ -39,7 +43,7 @@ void ScoreManager::SetUpText()
 	m_HighScoreText.setFont(m_Font);
 	m_HighScoreText.setCharacterSize(30);
 	m_HighScoreText.setFillColor(sf::Color::White);
-	m_HighScoreText.setPosition(sf::VideoMode::getDesktopMode().width / 6.0f, sf::VideoMode::getDesktopMode().height / 2.5f);
+	m_HighScoreText.setPosition(sf::VideoMode::getDesktopMode().width / 2.5f, sf::VideoMode::getDesktopMode().height / 30.0f);
 
 	/*
 	Can be used to store a "string" and an "int" together.

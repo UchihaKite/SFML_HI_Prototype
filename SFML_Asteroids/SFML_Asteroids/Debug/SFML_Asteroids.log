@@ -1,1 +1,47 @@
-﻿
+﻿  Bullet.cpp
+  Engine.cpp
+  GameObject.cpp
+c:\users\uchihakite\desktop\sfml_hi_prototype\sfml_asteroids\sfml_asteroids\gameobject.cpp(40): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+c:\users\uchihakite\desktop\sfml_hi_prototype\sfml_asteroids\sfml_asteroids\gameobject.cpp(51): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+  GameState.cpp
+  Main.cpp
+c:\users\uchihakite\desktop\sfml_hi_prototype\sfml_asteroids\sfml_asteroids\main.cpp(11): warning C4244: 'argument': conversion from 'T' to 'unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+c:\users\uchihakite\desktop\sfml_hi_prototype\sfml_asteroids\sfml_asteroids\main.cpp(27): warning C4244: 'argument': conversion from 'T' to 'unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+  ScoreManager.cpp
+  SoundContainer.cpp
+  StarParticleSystem.cpp
+c:\users\uchihakite\desktop\sfml_hi_prototype\sfml_asteroids\sfml_asteroids\starparticlesystem.cpp(51): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\uchihakite\desktop\sfml_hi_prototype\sfml_asteroids\sfml_asteroids\starparticlesystem.cpp(52): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\uchihakite\desktop\sfml_hi_prototype\sfml_asteroids\sfml_asteroids\starparticlesystem.cpp(71): warning C4018: '<=': signed/unsigned mismatch
+c:\users\uchihakite\desktop\sfml_hi_prototype\sfml_asteroids\sfml_asteroids\starparticlesystem.cpp(76): warning C4018: '<=': signed/unsigned mismatch
+c:\users\uchihakite\desktop\sfml_hi_prototype\sfml_asteroids\sfml_asteroids\starparticlesystem.cpp(81): warning C4018: '<=': signed/unsigned mismatch
+  State.cpp
+  StateMachine.cpp
+  TextureHolder.cpp
+  TitleScreenState.cpp
+  Generating Code...
+  SFML_Asteroids.vcxproj -> C:\Users\UchihaKite\Desktop\SFML_HI_Prototype\SFML_Asteroids\Debug\SFML_Asteroids.exe

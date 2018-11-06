@@ -8,7 +8,7 @@ error, as a result of forward declaring the StateMachine.*/
 TitleScreenState::TitleScreenState(StateMachine* Machine, Engine* Engine) :
 	GameState(Machine, Engine)
 {
-
+	
 }
 
 void TitleScreenState::Update(sf::RenderWindow* Window, float DeltaTime)
