@@ -6,7 +6,7 @@
 
 #define DEG_TO_RAD (0.0174532925f) // Degrees to Radians
 
-class GameState; // Forward declare the "GameState" Where all the Gameplay happens
+class PlayState; // Forward declare the "GameState" Where all the Gameplay happens
 
 class GameObject
 {
@@ -26,7 +26,7 @@ public:
 	virtual void Destroy();
 	bool IsDestroyed();
 
-	void SetOwner(GameState* Owner);
+	void SetOwner(PlayState* Owner);
 
 	void SetAngle(float Angle);
 	float GetAngle();
@@ -45,7 +45,9 @@ protected:
 	sf::Sprite m_Sprite;
 	sf::Texture m_Texture;
 
-	GameState* m_Owner;
+	sf::Sound m_DestroySound;
+
+	PlayState* m_Owner;
 
 	float m_Angle;
 	float m_CollisionRadius;

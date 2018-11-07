@@ -1,6 +1,5 @@
 #pragma once
 #include "GameState.h"
-#include "ScoreManager.h"
 
 class TitleScreenState : public GameState
 {

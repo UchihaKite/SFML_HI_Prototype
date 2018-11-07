@@ -81,6 +81,12 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>Source Files\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="PlayState.cpp">
+      <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Asteroids.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SoundContainer.h">
@@ -117,6 +123,12 @@
       <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayState.h">
+      <Filter>Header Files\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Asteroids.h">
       <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>

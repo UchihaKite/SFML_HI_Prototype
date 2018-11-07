@@ -1,4 +1,6 @@
 #include "Bullet.h"
+#include "Asteroids.h"
+#include "PlayState.h"
 
 Bullet::Bullet(const sf::Vector2f & pos)
 	: GameObject("Sprites/PNG/Lasers/laserBlue08.png", pos)
@@ -21,14 +23,6 @@ void Bullet::Update(sf::RenderWindow * window, float dt)
 
 void Bullet::CollideWith(GameObject* Other)
 {
-	/*
-	Keeping this here to remind me of how I will structure the
-	Asteroid Classes. It'll be similar to how I did
-	"GameObject"s and the Derived Classes.
-	Will finish 11/7/2018
-	*/
-
-	/*
 	Asteroid* s_Asteroid = dynamic_cast<Asteroid*>(Other);
 	if (s_Asteroid != nullptr)
 	{
@@ -48,5 +42,4 @@ void Bullet::CollideWith(GameObject* Other)
 		Destroy();
 		Other->Destroy();
 	}
-	*/
 }

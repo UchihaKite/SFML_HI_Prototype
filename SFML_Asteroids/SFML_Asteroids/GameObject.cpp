@@ -137,6 +137,7 @@ bool GameObject::IsColliding(GameObject* Other)
 void GameObject::Destroy()
 {
 	m_Destroyed = true;
+	m_DestroySound.play();
 }
 
 bool GameObject::IsDestroyed()
@@ -144,7 +145,7 @@ bool GameObject::IsDestroyed()
 	return m_Destroyed;
 }
 
-void GameObject::SetOwner(GameState* Owner)
+void GameObject::SetOwner(PlayState* Owner)
 {
 	m_Owner = Owner;
 }
