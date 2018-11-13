@@ -2,6 +2,7 @@
 #include "PlayState.h"
 #include <random>
 #include <ctime>
+#include "SoundContainer.h"
 
 std::mt19937 g_RandomGenerator(time(0));
 std::uniform_int_distribution<int> g_RandomAngle(0, 360);
@@ -26,7 +27,7 @@ Asteroid::Asteroid(std::string TexturePath, const sf::Vector2f& Position)
 		m_Rotation = false;
 	}
 
-	m_DestroySound = SoundContainer::GetSound("Audio/BlowUp.wav");
+	m_DestroySound = SoundContainer::GetSound("Game Assets/Audio/BlowUp.wav");
 }
 
 void Asteroid::Update(sf::RenderWindow* Window, float DeltaTime)
@@ -45,24 +46,28 @@ void Asteroid::Update(sf::RenderWindow* Window, float DeltaTime)
 }
 
 SmallAsteroid::SmallAsteroid(const sf::Vector2f& Position)
-	: Asteroid("Sprites/PNG/Meteors/meteorBrown_small2.png", Position)
+	: Asteroid("Game Assets/Sprites/PNG/Meteors/meteorBrown_small2.png", Position)
 {
 	m_CollisionRadius = 15;
+	m_DestroySound = SoundContainer::GetSound("Game Assets/Audio/BlowUp.wav");
 }
 
 void SmallAsteroid::Destroy()
 {
+	m_DestroySound.play();
 	Asteroid::Destroy();
 }
 
 MedAsteroid::MedAsteroid(const sf::Vector2f& Position)
-	: Asteroid("Sprites/PNG/Meteors/meteorBrown_med1.png", Position)
+	: Asteroid("Game Assets/Sprites/PNG/Meteors/meteorBrown_med1.png", Position)
 {
 	m_CollisionRadius = 30.0f;
+	m_DestroySound = SoundContainer::GetSound("Game Assets/Audio/BlowUp.wav");
 }
 
 void MedAsteroid::Destroy()
 {
+	m_DestroySound.play();
 	Asteroid::Destroy();
 
 	// Create Small Asteroids upon being destroyed
@@ -76,15 +81,17 @@ void MedAsteroid::Destroy()
 }
 
 LargeAsteroid::LargeAsteroid(const sf::Vector2f& Position)
-	: Asteroid("Sprites/PNG/Meteors/meteorBrown_big1.png", Position)
+	: Asteroid("Game Assets/Sprites/PNG/Meteors/meteorBrown_big1.png", Position)
 {
 	// Collision Radius is set in the Parent Class
+	m_DestroySound = SoundContainer::GetSound("Game Assets/Audio/BlowUp.wav");
 }
 
 void LargeAsteroid::Destroy()
 {
+	m_DestroySound.play();
 	Asteroid::Destroy();
-
+	m_DestroySound.play();
 	// Create Medium Asteroids upon being destroyed
 	for (int i = 0; i < 3; i++)
 	{

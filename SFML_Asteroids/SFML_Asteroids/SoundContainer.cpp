@@ -7,7 +7,9 @@
 // Initialize the Pointer as a "NULL" Pointer
 SoundContainer* SoundContainer::m_s_Instance = nullptr;
 
-SoundContainer::SoundContainer()
+SoundContainer::SoundContainer() :
+	m_NumberOfBuffersCreated(0),
+	m_NumberOfSoundsCreated(0)
 {
 	assert(m_s_Instance == nullptr); // Assures the Pointer is Initially "NULL"
 	m_s_Instance = this; // Stores the First Instance of the Class
@@ -29,6 +31,8 @@ sf::Sound& SoundContainer::GetSound(std::string const& FileName)
 	// Did it Find a Match?
 	if (KeyValuePair != S.end())
 	{
+		m_s_Instance->m_NumberOfSoundsCreated++;
+		std::cout << m_s_Instance->m_NumberOfSoundsCreated << std::endl;
 		// Yes, Return the Sound
 		return KeyValuePair->second;
 		// The Second part of the kvp, the "sf::Sound"
@@ -54,4 +58,5 @@ sf::Sound& SoundContainer::GetSound(std::string const& FileName)
 void SoundContainer::Clear()
 {
 	m_s_Instance->m_Sounds.clear();
+	m_s_Instance->m_Buffers.clear();
 }

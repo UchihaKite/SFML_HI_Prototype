@@ -1,5 +1,7 @@
 #pragma once
-#include "SoundContainer.h"
+#include <SFML/Audio.hpp>
+#include <SFML/Graphics.hpp>
+#include <map>
 
 class TextureHolder
 {

@@ -8,26 +8,6 @@ error, as a result of forward declaring the StateMachine.*/
 TitleScreenState::TitleScreenState(StateMachine* Machine, Engine* Engine) :
 	GameState(Machine, Engine)
 {
-	
-}
-
-void TitleScreenState::Update(sf::RenderWindow* Window, float DeltaTime)
-{
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
-	{
-		//m_Machine->ChangeState("");
-		std::cout << "Works" << std::endl;
-	}
-}
-
-void TitleScreenState::Draw(sf::RenderWindow* Window)
-{
-	Window->draw(m_StartText);
-	Window->draw(m_TitleText);
-}
-
-void TitleScreenState::OnEnter()
-{
 	// Load the File for the Font
 	m_Font.loadFromFile("Game Assets/Font/kenpixel_high_square.ttf");
 
@@ -47,7 +27,24 @@ void TitleScreenState::OnEnter()
 	m_StartText.setString("Press Enter to Play");
 }
 
+void TitleScreenState::Update(sf::RenderWindow* Window, float DeltaTime)
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+	{
+		m_Machine->ChangeState("PlayState");
+	}
+}
+
+void TitleScreenState::Draw(sf::RenderWindow* Window)
+{
+	Window->draw(m_StartText);
+	Window->draw(m_TitleText);
+}
+
+void TitleScreenState::OnEnter()
+{
+}
+
 void TitleScreenState::OnExit()
 {
-
 }

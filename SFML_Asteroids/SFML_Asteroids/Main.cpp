@@ -61,16 +61,16 @@ int main()
 					and in TextureHolder. Otherwise, the Program/Game will Crash
 					upon trying to Exit
 					*/
-					SoundContainer::Clear();
 					TextureHolder::Clear();
+					SoundContainer::Clear();
 					s_Window.close(); // Press "ESC" to Close the Window/Game
 				}
 			}
 
 			if (s_Event.type == sf::Event::Closed)
 			{
-				SoundContainer::Clear();
 				TextureHolder::Clear();
+				SoundContainer::Clear();
 				s_Window.close(); // Click the "X" to Close the Window/Game
 			}
 		}

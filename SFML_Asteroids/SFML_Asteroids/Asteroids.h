@@ -6,9 +6,10 @@ class Asteroid : public GameObject
 public:
 	Asteroid(std::string TexturePath, const sf::Vector2f& Position);
 	virtual void Update(sf::RenderWindow* Window, float DeltaTime);
-	virtual void ApplyDrag(float DeltaTime) { /* Do Nothing */ }
-private:
+	inline virtual void ApplyDrag(float DeltaTime) { /* Do Nothing */ }
+protected:
 	bool m_Rotation;
+	sf::Sound m_DestroySound;
 };
 
 /*

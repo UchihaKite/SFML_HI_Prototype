@@ -1,6 +1,4 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 #include "TextureHolder.h"
 #include <string>
 
@@ -44,8 +42,6 @@ protected:
 
 	sf::Sprite m_Sprite;
 	sf::Texture m_Texture;
-
-	sf::Sound m_DestroySound;
 
 	PlayState* m_Owner;
 

@@ -22,4 +22,6 @@ private:
 	// A Pointer of the Same Type as the Class
 	// One and Only Instance of this Class
 	static SoundContainer* m_s_Instance;
+	int m_NumberOfSoundsCreated;
+	int m_NumberOfBuffersCreated;
 };

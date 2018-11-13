@@ -1,4 +1,5 @@
 #include "ScoreManager.h"
+#include <iostream>
 
 ScoreManager::ScoreManager() :
 	m_Score(0),
@@ -59,6 +60,8 @@ void ScoreManager::Update(int Score)
 {
 	if (m_Score != Score)
 	{
+		m_Score = Score;
+		m_ssScore.str(std::string());
 		m_ssScore << "Score: " << m_Score;
 		m_ScoreText.setString(m_ssScore.str());
 	}
@@ -66,6 +69,7 @@ void ScoreManager::Update(int Score)
 	if (m_Score > m_HighScore)
 	{
 		m_HighScore = m_Score;
+		m_ssHighScore.str(std::string());
 		m_ssHighScore << "Highscore: " << m_HighScore;
 		m_HighScoreText.setString(m_ssHighScore.str());
 	}

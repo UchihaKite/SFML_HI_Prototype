@@ -1,5 +1,5 @@
 #include "GameObject.h"
-
+#include <iostream>
 
 GameObject::GameObject(std::string TexturePath, const sf::Vector2f& Position) :
 	m_Position(Position),
@@ -137,7 +137,6 @@ bool GameObject::IsColliding(GameObject* Other)
 void GameObject::Destroy()
 {
 	m_Destroyed = true;
-	m_DestroySound.play();
 }
 
 bool GameObject::IsDestroyed()
