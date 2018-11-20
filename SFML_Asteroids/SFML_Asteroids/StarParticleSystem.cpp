@@ -33,7 +33,7 @@ void Star::AddPositionY(sf::Uint16 PositionY)
 
 Starfield::Starfield(sf::RenderWindow* Window)
 	: m_MaxSmallStars(0), m_MaxMediumStars(0), m_MaxLargeStars(0), m_WindowSizeX(Window->getSize().x), m_WindowSizeY(Window->getSize().y)
-	, m_SmallStarSize(1), m_MediumStarSize(2), m_LargeStarSize(4)
+	, m_SmallStarSize(1), m_MediumStarSize(2), m_LargeStarSize(3)
 {
 	sf::Uint16 s_WindowSizeY = m_WindowSizeY / 10;
 
@@ -48,8 +48,8 @@ Starfield::Starfield(sf::RenderWindow* Window)
 	/*
 	Create the Seeds and Ranges for our Random Number Generator
 	*/
-	m_StarGeneratorX.seed(time(0));
-	m_StarGeneratorY.seed(time(0) + (s_WindowSizeY / 3));
+	m_StarGeneratorX.seed((unsigned int)time(0));
+	m_StarGeneratorY.seed((unsigned int)time(0) + (s_WindowSizeY / 3));
 	m_StarDistributionX = std::uniform_int_distribution<int>(0, m_WindowSizeX);
 	m_StarDistributionY = std::uniform_int_distribution<int>(0, m_WindowSizeY);
 
@@ -59,7 +59,7 @@ Starfield::Starfield(sf::RenderWindow* Window)
 	too many stars on the screen, reworked to adjust to any resolution
 	of a monitor. 
 	*/
-	m_MaxSmallStars = (m_WindowSizeX / (m_WindowSizeY / 9)) * m_WindowSizeY / (s_WindowSizeY / 9);
+	m_MaxSmallStars = (m_WindowSizeX / (m_WindowSizeY / 4)) * m_WindowSizeY / (s_WindowSizeY / 4);
 	m_MaxMediumStars = (m_WindowSizeX / (m_WindowSizeY / 3)) * m_WindowSizeY / (s_WindowSizeY / 3);
 	m_MaxLargeStars = (m_WindowSizeX / m_WindowSizeY) * (m_WindowSizeY / s_WindowSizeY);
 
@@ -101,7 +101,7 @@ void Starfield::Update(sf::RenderWindow* Window, float DeltaTime)
 
 	for_each(m_LargeStars.begin(), m_LargeStars.end(), [&](Star& s_Star) 
 	{
-		s_Star.AddPositionY(4);
+		s_Star.AddPositionY(3);
 	});
 
 	/*

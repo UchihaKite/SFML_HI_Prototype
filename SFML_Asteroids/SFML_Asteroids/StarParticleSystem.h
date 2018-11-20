@@ -36,9 +36,9 @@ protected:
 	The Maximum number of stars we can have.
 	Based on the resultion of the Monitor
 	*/
-	int m_MaxSmallStars;
-	int m_MaxMediumStars;
-	int m_MaxLargeStars;
+	unsigned int m_MaxSmallStars;
+	unsigned int m_MaxMediumStars;
+	unsigned int m_MaxLargeStars;
 
 	// Save the Resolution of the Monitor
 	sf::Uint16 m_WindowSizeX;

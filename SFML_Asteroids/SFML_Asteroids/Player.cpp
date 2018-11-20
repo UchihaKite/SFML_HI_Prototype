@@ -31,7 +31,7 @@ void Player::Draw(sf::RenderWindow* Window)
 		s_Shape.setFillColor(sf::Color::Transparent);
 		s_Shape.setOutlineThickness(5 * m_Timer / 3.0f + 1);
 		sf::Color s_Color = sf::Color::Blue;
-		s_Color.a = 255 * m_Timer / 3.0f;
+		s_Color.a = (int)(255.0f * m_Timer / 3.0f);
 		s_Shape.setOutlineColor(s_Color);
 		s_Shape.setOrigin(60, 55);
 		s_Shape.setPosition(m_Position.x, m_Position.y);
@@ -45,7 +45,7 @@ void Player::Draw(sf::RenderWindow* Window)
 		s_SinValue *= 0.25; // Between 0-1	
 		float s_Alpha = s_SinValue * 255.0f; // Between 0-255
 		sf::Color s_ShipColor = sf::Color::White;
-		s_ShipColor.a = s_Alpha;
+		s_ShipColor.a = (int)(s_Alpha);
 		m_Sprite.setColor(s_ShipColor);
 	}
 	else

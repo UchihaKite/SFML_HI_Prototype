@@ -1,6 +1,19 @@
 ﻿  Asteroids.cpp
-c:\users\uchihakite\desktop\sfml_hi_prototype\sfml_asteroids\sfml_asteroids\asteroids.cpp(7): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\uchihakite\desktop\sfml_hi_prototype\sfml_asteroids\sfml_asteroids\asteroids.cpp(18): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\uchihakite\desktop\sfml_hi_prototype\sfml_asteroids\sfml_asteroids\asteroids.cpp(77): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\uchihakite\desktop\sfml_hi_prototype\sfml_asteroids\sfml_asteroids\asteroids.cpp(99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Bullet.cpp
+  Engine.cpp
+  GameObject.cpp
+  GameOverState.cpp
+  GameState.cpp
+  Main.cpp
+  ParticleSystem.cpp
+  Player.cpp
+  PlayState.cpp
+  ScoreManager.cpp
+  SoundContainer.cpp
+  StarParticleSystem.cpp
+  State.cpp
+  StateMachine.cpp
+  TextureHolder.cpp
+  TitleScreenState.cpp
+  Generating Code...
   SFML_Asteroids.vcxproj -> C:\Users\UchihaKite\Desktop\SFML_HI_Prototype\SFML_Asteroids\Debug\SFML_Asteroids.exe

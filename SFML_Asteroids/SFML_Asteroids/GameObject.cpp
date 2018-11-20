@@ -37,7 +37,7 @@ void GameObject::Update(sf::RenderWindow* Window, float DeltaTime)
 	*/
 	if (m_Position.x < 0) // Left
 	{
-		m_Position.x = Window->getSize().x;
+		m_Position.x = (float)Window->getSize().x;
 		WentOffEdgeOfScreen(false);
 	}
 	else if (m_Position.x > Window->getSize().x) // Right
@@ -48,7 +48,7 @@ void GameObject::Update(sf::RenderWindow* Window, float DeltaTime)
 
 	if (m_Position.y < 0) // Top
 	{
-		m_Position.y = Window->getSize().y;
+		m_Position.y = (float)Window->getSize().y;
 		WentOffEdgeOfScreen(true);
 	}
 	else if (m_Position.y > Window->getSize().y) // Bottom

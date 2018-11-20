@@ -11,10 +11,10 @@ error, as a result of forward declaring the StateMachine.*/
 
 #include <iostream>
 
-std::mt19937 g_RandomGenerator2(time(0));
-std::uniform_int_distribution<int> g_RandomLocationX(0, sf::VideoMode::getDesktopMode().width / 2.0f);
-std::uniform_int_distribution<int> g_RandomLocationY(0, sf::VideoMode::getDesktopMode().height / 2.0f);
-std::uniform_int_distribution<int> g_RandomSpeed(100, 300);
+std::mt19937 g_RandomGenerator2((unsigned int)time(0));
+std::uniform_real_distribution<float> g_RandomLocationX(0.0f, sf::VideoMode::getDesktopMode().width / 2.0f);
+std::uniform_real_distribution<float> g_RandomLocationY(0.0f, sf::VideoMode::getDesktopMode().height / 2.0f);
+std::uniform_real_distribution<float> g_RandomSpeed(100.0f, 300.0f);
 
 PlayState::PlayState(StateMachine* Machine, Engine* Engine) :
 	GameState(Machine, Engine),
@@ -49,16 +49,16 @@ void PlayState::Update(sf::RenderWindow* Window, float DeltaTime)
 		}
 	}
 
-	for (int i = 0; i < m_GameObjects.size(); i++)
+	for (unsigned int i = 0; i < m_GameObjects.size(); i++)
 	{
 		GameObject* s_Current = m_GameObjects[i];
 		s_Current->Update(Window, DeltaTime);
 	}
 
-	for (int i = 0; i < m_GameObjects.size(); i++)
+	for (unsigned int i = 0; i < m_GameObjects.size(); i++)
 	{
 		GameObject* s_Current = m_GameObjects[i];
-		for (int j = 0; j < m_GameObjects.size(); j++)
+		for (unsigned int j = 0; j < m_GameObjects.size(); j++)
 		{
 			GameObject* s_Other = m_GameObjects[j];
 			if (s_Current->IsColliding(s_Other))
@@ -105,7 +105,7 @@ void PlayState::Update(sf::RenderWindow* Window, float DeltaTime)
 
 void PlayState::Draw(sf::RenderWindow* Window)
 {
-	for (int i = 0; i < m_GameObjects.size(); i++)
+	for (unsigned int i = 0; i < m_GameObjects.size(); i++)
 	{
 		GameObject* s_Current = m_GameObjects[i];
 		s_Current->Draw(Window);

@@ -4,16 +4,16 @@
 #include <ctime>
 #include "SoundContainer.h"
 
-std::mt19937 g_RandomGenerator(time(0));
-std::uniform_int_distribution<int> g_RandomAngle(0, 360);
-std::uniform_int_distribution<int> g_Random(1, 2);
-std::uniform_int_distribution<int> g_RandomRPositive(45, 90);
-std::uniform_int_distribution<int> g_RandomRNegative(-90, -45);
+std::mt19937 g_RandomGenerator((unsigned int)time(0));
+std::uniform_real_distribution<float> g_RandomAngle(0, 360);
+std::uniform_real_distribution<float> g_Random(1, 2);
+std::uniform_real_distribution<float> g_RandomRPositive(45, 90);
+std::uniform_real_distribution<float> g_RandomRNegative(-90, -45);
 
 Asteroid::Asteroid(std::string TexturePath, const sf::Vector2f& Position)
 	: GameObject(TexturePath, Position)
 {
-	int s_RandomAngle = g_RandomAngle(g_RandomGenerator);
+	float s_RandomAngle = g_RandomAngle(g_RandomGenerator);
 	m_CollisionRadius = 50.0f;
 	SetAngle(s_RandomAngle);
 

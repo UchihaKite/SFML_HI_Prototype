@@ -2,8 +2,10 @@
 #include "Instances.h"
 #include "StarParticleSystem.h"
 
+#include <iostream>
+
 // Declare the Resoltuion of the Game
-sf::Vector2f g_Resolution(sf::VideoMode::getDesktopMode().width / 2.0f, sf::VideoMode::getDesktopMode().height / 2.0f);
+sf::Vector2i g_Resolution(sf::VideoMode::getDesktopMode().width / 2, sf::VideoMode::getDesktopMode().height / 2);
 
 int main()
 {
@@ -52,6 +54,13 @@ int main()
 		sf::Event s_Event;
 		while (s_Window.pollEvent(s_Event))
 		{
+			if (s_Event.type == sf::Event::Closed)
+			{
+				TextureHolder::Clear();
+				SoundContainer::Clear();
+				s_Window.close(); // Click the "X" to Close the Window/Game
+			}
+
 			if (s_Event.type == sf::Event::KeyPressed)
 			{
 				if (s_Event.key.code == sf::Keyboard::Escape)
@@ -66,18 +75,11 @@ int main()
 					s_Window.close(); // Press "ESC" to Close the Window/Game
 				}
 			}
-
-			if (s_Event.type == sf::Event::Closed)
-			{
-				TextureHolder::Clear();
-				SoundContainer::Clear();
-				s_Window.close(); // Click the "X" to Close the Window/Game
-			}
 		}
-		s_BackgroundStars.Update(&s_Window, s_DeltaTimeAsSeconds);
-		s_StarTexture.loadFromImage(s_StarImage);
 
 		s_Window.clear();
+		s_StarTexture.loadFromImage(s_StarImage);
+		s_BackgroundStars.Update(&s_Window, s_DeltaTimeAsSeconds);
 		s_BackgroundStars.Draw(s_StarTexture);
 		s_Window.draw(s_StarSprite);
 		s_Engine.Update(&s_Window, s_DeltaTimeAsSeconds); // Update all Internals before Drawing Anything

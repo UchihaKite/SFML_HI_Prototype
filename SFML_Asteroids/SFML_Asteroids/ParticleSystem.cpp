@@ -3,7 +3,7 @@
 #include "ParticleSystem.h"
 #include "PlayState.h"
 
-std::mt19937 g_MyGenerator(time(0));
+std::mt19937 g_MyGenerator((unsigned int)time(0));
 std::uniform_int_distribution<int> g_RandomSize(1, 5);
 std::uniform_int_distribution<int> g_RandomLifeTime(1, 5);
 
@@ -42,7 +42,7 @@ ParticleSystem::ParticleSystem(float Count, sf::Vector2f Position, sf::Color Col
 
 void ParticleSystem::Draw(sf::RenderWindow* Window)
 {
-	for (int i = 0; i < m_Particles.size(); i++)
+	for (unsigned int i = 0; i < m_Particles.size(); i++)
 	{
 		Particle& s_Particle = m_Particles[i];
 
@@ -56,13 +56,13 @@ void ParticleSystem::Draw(sf::RenderWindow* Window)
 
 void ParticleSystem::Update(sf::RenderWindow* Window, float DeltaTime)
 {
-	for (int i = 0; i < m_Particles.size(); i++)
+	for (unsigned int i = 0; i < m_Particles.size(); i++)
 	{
 		Particle& s_Particle = m_Particles[i];
 		s_Particle.SetVelocity(s_Particle.GetAccel() * DeltaTime);
 		s_Particle.SetPosition(s_Particle.GetVelocity() * DeltaTime);
 		s_Particle.SetLifeTime(DeltaTime);
-		s_Particle.SetColor(255 * s_Particle.GetLifeTime() / s_Particle.GetInitialLifeTime());
+		s_Particle.SetColor((int)(255.0f * s_Particle.GetLifeTime() / s_Particle.GetInitialLifeTime()));
 
 		if (s_Particle.GetLifeTime() <= 0.0f)
 		{
