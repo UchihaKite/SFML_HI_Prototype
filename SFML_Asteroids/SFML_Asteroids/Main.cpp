@@ -1,5 +1,5 @@
 #include "Engine.h"
-#include "Instances.h"
+#include "TextureHolder.h"
 #include "StarParticleSystem.h"
 
 #include <iostream>
@@ -12,18 +12,21 @@ int main()
 	// Create the Window
 	sf::RenderWindow s_Window(sf::VideoMode(g_Resolution.x, g_Resolution.y), "Asteroids!");
 
+	SoundContainer* s_SoundContainer = new SoundContainer();
+	TextureHolder* s_TextureHolder = new TextureHolder();
+
 	// Hide the Mouse Cursor
 	s_Window.setMouseCursorVisible(false);
 
 	// Background Music for the Game
 	// Use the SoundContainer
-	sf::Sound m_Song = SoundContainer::GetSound("Game Assets/Audio/Song.wav");
+	sf::Sound m_Song = s_SoundContainer->GetSound("Game Assets/Audio/Song.wav");
 	m_Song.setVolume(50); // Adjust the volume first
 	m_Song.play();
 	m_Song.setLoop(true); // Loop it
 
 	// Delcare Instance of the Engine
-	Engine s_Engine;
+	Engine s_Engine(s_SoundContainer, s_TextureHolder);
 
 	sf::Image s_StarImage;
 	s_StarImage.create(g_Resolution.x + 4, g_Resolution.y + 4, sf::Color::Black);
@@ -54,13 +57,6 @@ int main()
 		sf::Event s_Event;
 		while (s_Window.pollEvent(s_Event))
 		{
-			if (s_Event.type == sf::Event::Closed)
-			{
-				TextureHolder::Clear();
-				SoundContainer::Clear();
-				s_Window.close(); // Click the "X" to Close the Window/Game
-			}
-
 			if (s_Event.type == sf::Event::KeyPressed)
 			{
 				if (s_Event.key.code == sf::Keyboard::Escape)
@@ -70,10 +66,15 @@ int main()
 					and in TextureHolder. Otherwise, the Program/Game will Crash
 					upon trying to Exit
 					*/
-					TextureHolder::Clear();
-					SoundContainer::Clear();
+					//TextureHolder::Clear();
+					//SoundContainer::Clear();
 					s_Window.close(); // Press "ESC" to Close the Window/Game
 				}
+			}
+
+			if (s_Event.type == sf::Event::Closed)
+			{
+				s_Window.close(); // Click the "X" to Close the Window/Game
 			}
 		}
 

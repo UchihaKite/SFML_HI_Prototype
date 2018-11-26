@@ -4,7 +4,7 @@
 class Bullet : public GameObject
 {
 public:
-	Bullet(const sf::Vector2f& Position);
+	Bullet(const sf::Vector2f& Position, SoundContainer* SoundContainer, TextureHolder* TextureHolder);
 	virtual void Update(sf::RenderWindow* Window, float DeltaTime);
 	
 	virtual void ApplyDrag(float DeltaTime) { /* Do Nothing */ };

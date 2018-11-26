@@ -7,8 +7,8 @@ class SoundContainer
 {
 public:
 	SoundContainer();
-	static sf::Sound& GetSound(std::string const& FileName);
-	static void Clear(); // Clears the Contents of the "std::map"s
+	sf::Sound& GetSound(std::string const& FileName);
+	void Clear(); // Clears the Contents of the "std::map"s
 private:
 	/*
 	Map Container that holds Pairs
@@ -18,10 +18,4 @@ private:
 
 	// Pairs = Strings(Key) and SoundBuffers(What's Returned)
 	std::map<std::string, sf::SoundBuffer> m_Buffers;
-
-	// A Pointer of the Same Type as the Class
-	// One and Only Instance of this Class
-	static SoundContainer* m_s_Instance;
-	int m_NumberOfSoundsCreated;
-	int m_NumberOfBuffersCreated;
 };

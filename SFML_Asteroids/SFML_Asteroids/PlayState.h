@@ -8,7 +8,7 @@
 class PlayState : public GameState
 {
 public:
-	PlayState(StateMachine* Machine, Engine* Engine);
+	PlayState(StateMachine* Machine, Engine* Engine, SoundContainer* SoundContainer, TextureHolder* TextureHolder);
 
 	void Update(sf::RenderWindow* Window, float DeltaTime);
 	void Draw(sf::RenderWindow* Window);

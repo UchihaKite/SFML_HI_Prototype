@@ -10,8 +10,8 @@ std::uniform_real_distribution<float> g_Random(1, 2);
 std::uniform_real_distribution<float> g_RandomRPositive(45, 90);
 std::uniform_real_distribution<float> g_RandomRNegative(-90, -45);
 
-Asteroid::Asteroid(std::string TexturePath, const sf::Vector2f& Position)
-	: GameObject(TexturePath, Position)
+Asteroid::Asteroid(std::string TexturePath, const sf::Vector2f& Position, SoundContainer* SoundContainer, TextureHolder* TextureHolder)
+	: GameObject(TexturePath, Position, SoundContainer, TextureHolder)
 {
 	float s_RandomAngle = g_RandomAngle(g_RandomGenerator);
 	m_CollisionRadius = 50.0f;
@@ -27,7 +27,7 @@ Asteroid::Asteroid(std::string TexturePath, const sf::Vector2f& Position)
 		m_Rotation = false;
 	}
 
-	m_DestroySound = SoundContainer::GetSound("Game Assets/Audio/BlowUp.wav");
+	m_DestroySound = m_SoundContainer->GetSound("Game Assets/Audio/BlowUp.wav");
 }
 
 void Asteroid::Update(sf::RenderWindow* Window, float DeltaTime)
@@ -45,11 +45,11 @@ void Asteroid::Update(sf::RenderWindow* Window, float DeltaTime)
 	}
 }
 
-SmallAsteroid::SmallAsteroid(const sf::Vector2f& Position)
-	: Asteroid("Game Assets/Sprites/PNG/Meteors/meteorBrown_small2.png", Position)
+SmallAsteroid::SmallAsteroid(const sf::Vector2f& Position, SoundContainer* SoundContainer, TextureHolder* TextureHolder)
+	: Asteroid("Game Assets/Sprites/PNG/Meteors/meteorBrown_small2.png", Position, SoundContainer, TextureHolder)
 {
 	m_CollisionRadius = 15;
-	m_DestroySound = SoundContainer::GetSound("Game Assets/Audio/BlowUp.wav");
+	m_DestroySound = m_SoundContainer->GetSound("Game Assets/Audio/BlowUp.wav");
 }
 
 void SmallAsteroid::Destroy()
@@ -58,11 +58,11 @@ void SmallAsteroid::Destroy()
 	Asteroid::Destroy();
 }
 
-MedAsteroid::MedAsteroid(const sf::Vector2f& Position)
-	: Asteroid("Game Assets/Sprites/PNG/Meteors/meteorBrown_med1.png", Position)
+MedAsteroid::MedAsteroid(const sf::Vector2f& Position, SoundContainer* SoundContainer, TextureHolder* TextureHolder)
+	: Asteroid("Game Assets/Sprites/PNG/Meteors/meteorBrown_med1.png", Position, SoundContainer, TextureHolder)
 {
 	m_CollisionRadius = 30.0f;
-	m_DestroySound = SoundContainer::GetSound("Game Assets/Audio/BlowUp.wav");
+	m_DestroySound = m_SoundContainer->GetSound("Game Assets/Audio/BlowUp.wav");
 }
 
 void MedAsteroid::Destroy()
@@ -73,18 +73,18 @@ void MedAsteroid::Destroy()
 	// Create Small Asteroids upon being destroyed
 	for (int i = 0; i < 2; i++)
 	{
-		SmallAsteroid* s_Small = new SmallAsteroid(m_Position);
+		SmallAsteroid* s_Small = new SmallAsteroid(m_Position, m_SoundContainer, m_TextureHolder);
 		s_Small->SetAngle(g_RandomAngle(g_RandomGenerator));
 		s_Small->SetVelocity(50);
 		m_Owner->AddObject(s_Small);
 	}
 }
 
-LargeAsteroid::LargeAsteroid(const sf::Vector2f& Position)
-	: Asteroid("Game Assets/Sprites/PNG/Meteors/meteorBrown_big1.png", Position)
+LargeAsteroid::LargeAsteroid(const sf::Vector2f& Position, SoundContainer* SoundContainer, TextureHolder* TextureHolder)
+	: Asteroid("Game Assets/Sprites/PNG/Meteors/meteorBrown_big1.png", Position, SoundContainer, TextureHolder)
 {
 	// Collision Radius is set in the Parent Class
-	m_DestroySound = SoundContainer::GetSound("Game Assets/Audio/BlowUp.wav");
+	m_DestroySound = m_SoundContainer->GetSound("Game Assets/Audio/BlowUp.wav");
 }
 
 void LargeAsteroid::Destroy()
@@ -95,7 +95,7 @@ void LargeAsteroid::Destroy()
 	// Create Medium Asteroids upon being destroyed
 	for (int i = 0; i < 3; i++)
 	{
-		MedAsteroid* s_Medium = new MedAsteroid(m_Position);
+		MedAsteroid* s_Medium = new MedAsteroid(m_Position, m_SoundContainer, m_TextureHolder);
 		s_Medium->SetAngle(g_RandomAngle(g_RandomGenerator));
 		s_Medium->SetVelocity(75);
 		m_Owner->AddObject(s_Medium);

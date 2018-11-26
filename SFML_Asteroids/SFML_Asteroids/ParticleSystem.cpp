@@ -18,8 +18,8 @@ Particle::Particle(sf::Vector2f Position, sf::Color Color, float Size, float Lif
 {
 }
 
-ParticleSystem::ParticleSystem(float Count, sf::Vector2f Position, sf::Color Color, float Size, int Spread, float Angle, float Speed, int SpeedSpread)
-	: GameObject("", Position)
+ParticleSystem::ParticleSystem(float Count, sf::Vector2f Position, sf::Color Color, float Size, int Spread, float Angle, float Speed, int SpeedSpread, SoundContainer* SoundContainer, TextureHolder* TextureHolder)
+	: GameObject("", Position, SoundContainer, TextureHolder)
 {
 	for (int i = 0; i < Count; i++)
 	{

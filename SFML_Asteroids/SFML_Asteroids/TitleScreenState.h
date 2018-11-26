@@ -4,7 +4,7 @@
 class TitleScreenState : public GameState
 {
 public:
-	TitleScreenState(StateMachine* Machine, Engine* Engine);
+	TitleScreenState(StateMachine* Machine, Engine* Engine, SoundContainer* SoundContainer, TextureHolder* TextureHolder);
 
 	void Update(sf::RenderWindow* Window, float DeltaTime);
 	void Draw(sf::RenderWindow* Window);

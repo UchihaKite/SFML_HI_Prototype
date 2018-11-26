@@ -5,8 +5,8 @@ error, as a result of forward declaring the StateMachine.*/
 
 #include <iostream>
 
-TitleScreenState::TitleScreenState(StateMachine* Machine, Engine* Engine) :
-	GameState(Machine, Engine)
+TitleScreenState::TitleScreenState(StateMachine* Machine, Engine* Engine, SoundContainer* SoundContainer, TextureHolder* TextureHolder) :
+	GameState(Machine, Engine, SoundContainer, TextureHolder)
 {
 	// Load the File for the Font
 	m_Font.loadFromFile("Game Assets/Font/kenpixel_high_square.ttf");

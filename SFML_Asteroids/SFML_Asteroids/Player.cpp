@@ -5,17 +5,17 @@
 #include "ParticleSystem.h"
 #include "SoundContainer.h"
 
-Player::Player(std::string TexturePath, const sf::Vector2f& Position)
-	: GameObject(TexturePath, Position),
+Player::Player(std::string TexturePath, const sf::Vector2f& Position, SoundContainer* SoundContainer, TextureHolder* TextureHolder)
+	: GameObject(TexturePath, Position, SoundContainer, TextureHolder),
 	m_Firing(false),
 	m_Cooldown(0.0f),
 	m_Timer(0.0f),
 	m_IsInvulnerable(true)
 
 {
-	m_ShootingSound = SoundContainer::GetSound("Game Assets/Audio/Shooting.wav");
-	m_DyingSound = SoundContainer::GetSound("Game Assets/Audio/Dying.wav");
-	m_RespawnSound = SoundContainer::GetSound("Game Assets/Audio/Respawn.wav");
+	m_ShootingSound = m_SoundContainer->GetSound("Game Assets/Audio/Shooting.wav");
+	m_DyingSound = m_SoundContainer->GetSound("Game Assets/Audio/Dying.wav");
+	m_RespawnSound = m_SoundContainer->GetSound("Game Assets/Audio/Respawn.wav");
 
 	m_RespawnSound.play();
 }
@@ -77,8 +77,8 @@ void Player::Update(sf::RenderWindow* Window, float DeltaTime)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		SetAccel(400.0f);
-		m_Owner->AddObject(new ParticleSystem(1, m_Position + sf::Vector2f(sin(DEG_TO_RAD * (m_Angle + 90)) * 50, -cos(DEG_TO_RAD * (m_Angle + 90)) * 50), sf::Color::Blue, 1, 0, -m_Angle, 400, 0));
-		m_Owner->AddObject(new ParticleSystem(1, m_Position + sf::Vector2f(sin(DEG_TO_RAD * (m_Angle - 90)) * 50, -cos(DEG_TO_RAD * (m_Angle - 90)) * 50), sf::Color::Blue, 1, 0, -m_Angle, 400, 0));
+		m_Owner->AddObject(new ParticleSystem(1, m_Position + sf::Vector2f(sin(DEG_TO_RAD * (m_Angle + 90)) * 50, -cos(DEG_TO_RAD * (m_Angle + 90)) * 50), sf::Color::Blue, 1, 0, -m_Angle, 400, 0, m_SoundContainer, m_TextureHolder));
+		m_Owner->AddObject(new ParticleSystem(1, m_Position + sf::Vector2f(sin(DEG_TO_RAD * (m_Angle - 90)) * 50, -cos(DEG_TO_RAD * (m_Angle - 90)) * 50), sf::Color::Blue, 1, 0, -m_Angle, 400, 0, m_SoundContainer, m_TextureHolder));
 	}
 	else
 	{
@@ -107,7 +107,7 @@ void Player::Update(sf::RenderWindow* Window, float DeltaTime)
 			m_ShootingSound.play();
 			for (int i = 0; i < 3; i++)
 			{
-				Bullet* s_Bullet = new Bullet(m_Position);
+				Bullet* s_Bullet = new Bullet(m_Position, m_SoundContainer, m_TextureHolder);
 				s_Bullet->SetAngle(m_Angle + i * 15 - 15);
 				s_Bullet->SetVelocity(500);
 				m_Owner->AddObject(s_Bullet);
@@ -117,7 +117,7 @@ void Player::Update(sf::RenderWindow* Window, float DeltaTime)
 		{
 			m_ShootingSound.play();
 			m_Cooldown = 0.2f;
-			Bullet* s_Bullet = new Bullet(m_Position);
+			Bullet* s_Bullet = new Bullet(m_Position, m_SoundContainer, m_TextureHolder);
 			s_Bullet->SetAngle(m_Angle);
 			s_Bullet->SetVelocity(500);
 			m_Owner->AddObject(s_Bullet);

@@ -4,7 +4,7 @@
 class Player : public GameObject
 {
 public:
-	Player(std::string TexturePath, const sf::Vector2f& Position);
+	Player(std::string TexturePath, const sf::Vector2f& Position, SoundContainer* SoundContainer, TextureHolder* TextureHolder);
 	virtual void Draw(sf::RenderWindow* Window);
 	virtual void Update(sf::RenderWindow* Window, float DeltaTime);
 	virtual void CollidedWith(GameObject* Other);
