@@ -1,18 +1,18 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-#include <string>
 
 #define DEG_TO_RAD (0.0174532925f) // Degrees to Radians
 
 class PlayState; // Forward declare the "GameState" Where all the Gameplay happens
-class SoundContainer;
-class TextureHolder;
+class SoundManager;
+class TextureManager;
+enum TextureType;
 
 class GameObject
 {
 public:
-	GameObject(std::string TexturePath, const sf::Vector2f& Position, SoundContainer* SoundContainer, TextureHolder* TextureHolder);
+	GameObject(TextureType Type, const sf::Vector2f& Position, SoundManager* SoundManager, TextureManager* TextureManager);
 
 	virtual void Update(sf::RenderWindow* Window, float DeltaTime);
 	virtual void Draw(sf::RenderWindow* Window);
@@ -44,7 +44,6 @@ protected:
 	sf::Vector2f m_Accel;
 
 	sf::Sprite m_Sprite;
-	sf::Texture m_Texture;
 
 	PlayState* m_Owner;
 
@@ -52,6 +51,6 @@ protected:
 	float m_CollisionRadius;
 	bool m_Destroyed;
 
-	SoundContainer* m_SoundContainer;
-	TextureHolder* m_TextureHolder;
+	SoundManager* m_SoundManager;
+	TextureManager* m_TextureManager;
 };

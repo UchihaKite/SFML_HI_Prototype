@@ -1,8 +1,5 @@
 #include "Engine.h"
-#include "TextureHolder.h"
 #include "StarParticleSystem.h"
-
-#include <iostream>
 
 // Declare the Resoltuion of the Game
 sf::Vector2i g_Resolution(sf::VideoMode::getDesktopMode().width / 2, sf::VideoMode::getDesktopMode().height / 2);
@@ -12,21 +9,22 @@ int main()
 	// Create the Window
 	sf::RenderWindow s_Window(sf::VideoMode(g_Resolution.x, g_Resolution.y), "Asteroids!");
 
-	SoundContainer* s_SoundContainer = new SoundContainer();
-	TextureHolder* s_TextureHolder = new TextureHolder();
+	SoundManager* s_SoundManager = new SoundManager();
+	s_SoundManager->LoadSoundBuffers();
+	s_SoundManager->SetLoop(BACKGROUND_SONG, true);
+
+	TextureManager* s_TextureManager = new TextureManager();
+	s_TextureManager->LoadTextures();
 
 	// Hide the Mouse Cursor
 	s_Window.setMouseCursorVisible(false);
 
 	// Background Music for the Game
-	// Use the SoundContainer
-	sf::Sound m_Song = s_SoundContainer->GetSound("Game Assets/Audio/Song.wav");
-	m_Song.setVolume(50); // Adjust the volume first
-	m_Song.play();
-	m_Song.setLoop(true); // Loop it
+	// Use the SoundManager
+	s_SoundManager->PlaySound(BACKGROUND_SONG);
 
 	// Delcare Instance of the Engine
-	Engine s_Engine(s_SoundContainer, s_TextureHolder);
+	Engine s_Engine(s_SoundManager, s_TextureManager);
 
 	sf::Image s_StarImage;
 	s_StarImage.create(g_Resolution.x + 4, g_Resolution.y + 4, sf::Color::Black);

@@ -2,13 +2,13 @@
 #include "State.h"
 
 class Engine; // Forward Declaration
-class SoundContainer;
-class TextureHolder;
+class SoundManager;
+class TextureManager;
 
 class GameState : public State
 {
 public:
-	GameState(StateMachine* Machine, Engine* Engine, SoundContainer* SoundContainer, TextureHolder* TextureHolder);
+	GameState(StateMachine* Machine, Engine* Engine, SoundManager* SoundManager, TextureManager* TextureManager);
 
 	virtual void Update(sf::RenderWindow* Window, float DeltaTime);
 	virtual void Draw(sf::RenderWindow* Window);
@@ -18,6 +18,6 @@ public:
 	inline Engine* GetEngine() { return m_Engine; }
 protected:
 	Engine* m_Engine;
-	SoundContainer* m_SoundContainer;
-	TextureHolder* m_TextureHolder;
+	SoundManager* m_SoundManager;
+	TextureManager* m_TextureManager;
 };

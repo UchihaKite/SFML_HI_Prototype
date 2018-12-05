@@ -1,9 +1,10 @@
 #include "Bullet.h"
 #include "Asteroids.h"
 #include "PlayState.h"
+#include "TextureManager.h"
 
-Bullet::Bullet(const sf::Vector2f & Position, SoundContainer* SoundContainer, TextureHolder* TextureHolder)
-	: GameObject("Game Assets/Sprites/PNG/Lasers/laserBlue08.png", Position, SoundContainer, TextureHolder)
+Bullet::Bullet(const sf::Vector2f & Position, SoundManager* SoundManager, TextureManager* TextureManager)
+	: GameObject(BULLET, Position, SoundManager, TextureManager)
 	, m_TimeAlive(0.0f)
 {
 	m_Sprite.setScale(0.5, 0.5);

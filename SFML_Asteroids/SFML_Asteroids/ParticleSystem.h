@@ -32,7 +32,7 @@ private:
 class ParticleSystem : public GameObject
 {
 public:
-	ParticleSystem(float Count, sf::Vector2f Position, sf::Color Color, float Size, int Spread, float Angle, float Speed, int SpeedSpread, SoundContainer* SoundContainer, TextureHolder* TextureHolder);
+	ParticleSystem(float Count, sf::Vector2f Position, sf::Color Color, float Size, int Spread, float Angle, float Speed, int SpeedSpread, SoundManager* SoundManager, TextureManager* TextureManager);
 	virtual void Draw(sf::RenderWindow* Window);
 	virtual void Update(sf::RenderWindow* Window, float DeltaTime);
 private:

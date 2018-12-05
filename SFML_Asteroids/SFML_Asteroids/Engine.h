@@ -1,11 +1,11 @@
 #pragma once
 #include "StateMachine.h"
-#include "TextureHolder.h"
+#include "TextureManager.h"
 
 class Engine
 {
 public:
-	Engine(SoundContainer* SoundContainer, TextureHolder* TextureHolder);
+	Engine(SoundManager* SoundManager, TextureManager* TextureManager);
 	~Engine();
 
 	void Update(sf::RenderWindow* Window, float DeltaTime); // Update Engine Internals
@@ -15,6 +15,6 @@ private:
 	StateMachine* m_StateMachine;
 
 	// Instance of the Utilities
-	SoundContainer* m_SoundContainer;
-	TextureHolder* m_TextureHolder;
+	SoundManager* m_SoundManager;
+	TextureManager* m_TextureManager;
 };

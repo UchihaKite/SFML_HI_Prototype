@@ -1,12 +1,11 @@
 #include "GameState.h"
 #include "Engine.h"
-#include "TextureHolder.h"
 
-GameState::GameState(StateMachine* Machine, Engine* Engine, SoundContainer* SoundContainer, TextureHolder* TextureHolder) :
+GameState::GameState(StateMachine* Machine, Engine* Engine, SoundManager* SoundManager, TextureManager* TextureManager) :
 	State(Machine),
 	m_Engine(Engine),
-	m_SoundContainer(SoundContainer),
-	m_TextureHolder(TextureHolder)
+	m_SoundManager(SoundManager),
+	m_TextureManager(TextureManager)
 {
 	//No behavior for base state
 }

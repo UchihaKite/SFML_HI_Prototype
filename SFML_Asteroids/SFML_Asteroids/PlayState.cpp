@@ -1,7 +1,7 @@
 #include "PlayState.h"
 #include "StateMachine.h"
 #include "Player.h"
-#include "TextureHolder.h"
+#include "TextureManager.h"
 #include "Asteroids.h"
 /*^ This is included to avoid the "pointer to incomplete class type"
 error, as a result of forward declaring the StateMachine.*/
@@ -16,8 +16,8 @@ std::uniform_real_distribution<float> g_RandomLocationX(0.0f, sf::VideoMode::get
 std::uniform_real_distribution<float> g_RandomLocationY(0.0f, sf::VideoMode::getDesktopMode().height / 2.0f);
 std::uniform_real_distribution<float> g_RandomSpeed(100.0f, 300.0f);
 
-PlayState::PlayState(StateMachine* Machine, Engine* Engine, SoundContainer* SoundContainer, TextureHolder* TextureHolder) :
-	GameState(Machine, Engine, SoundContainer, TextureHolder),
+PlayState::PlayState(StateMachine* Machine, Engine* Engine, SoundManager* SoundManager, TextureManager* TextureManager) :
+	GameState(Machine, Engine, SoundManager, TextureManager),
 	m_ScoreTracker(0),
 	m_LivesRemaining(4),
 	m_LevelTracker(1),
@@ -30,7 +30,6 @@ PlayState::PlayState(StateMachine* Machine, Engine* Engine, SoundContainer* Soun
 
 	m_Font.loadFromFile("Game Assets/Font/kenpixel_high_square.ttf");
 
-	m_LivesTexture = m_TextureHolder->GetTexture("Game Assets/Sprites/PNG/playerShip2_red.png");
 	m_LivesColor = sf::Color::White;
 	m_LivesColor.a = 120;
 }
@@ -44,7 +43,7 @@ void PlayState::Update(sf::RenderWindow* Window, float DeltaTime)
 		m_TimeUntilRespawn -= DeltaTime;
 		if (m_TimeUntilRespawn <= 0.0f)
 		{
-			Player* s_Player = new Player("Game Assets/Sprites/PNG/playerShip2_red.png", sf::Vector2f(sf::VideoMode::getDesktopMode().width / 4.0f, sf::VideoMode::getDesktopMode().height / 4.0f), m_SoundContainer, m_TextureHolder);
+			Player* s_Player = new Player(PLAYER, sf::Vector2f(sf::VideoMode::getDesktopMode().width / 4.0f, sf::VideoMode::getDesktopMode().height / 4.0f), m_SoundManager, m_TextureManager);
 			AddObject(s_Player);
 		}
 	}
@@ -114,7 +113,7 @@ void PlayState::Draw(sf::RenderWindow* Window)
 	for (int i = 0; i < m_LivesRemaining; i++)
 	{
 		sf::Sprite s_PlayerLives;
-		s_PlayerLives.setTexture(m_LivesTexture);
+		s_PlayerLives.setTexture(m_TextureManager->ReturnTexture(PLAYER));
 		s_PlayerLives.setScale(0.5f, 0.5f);
 		s_PlayerLives.setColor(m_LivesColor);
 
@@ -159,7 +158,7 @@ void PlayState::SpawnAsteroids(int Level)
 	{
 		for (int i = 0; i < 5; i++)
 		{
-			LargeAsteroid* s_NewAsteroid = new LargeAsteroid(sf::Vector2f(g_RandomLocationX(g_RandomGenerator2), g_RandomLocationY(g_RandomGenerator2)), m_SoundContainer, m_TextureHolder);
+			LargeAsteroid* s_NewAsteroid = new LargeAsteroid(sf::Vector2f(g_RandomLocationX(g_RandomGenerator2), g_RandomLocationY(g_RandomGenerator2)), m_SoundManager, m_TextureManager);
 			s_NewAsteroid->SetVelocity(g_RandomSpeed(g_RandomGenerator2));
 			AddObject(s_NewAsteroid);
 		}
@@ -168,7 +167,7 @@ void PlayState::SpawnAsteroids(int Level)
 	{
 		for (int i = 0; i < 5 + Level; i++)
 		{
-			LargeAsteroid* s_NewAsteroid = new LargeAsteroid(sf::Vector2f(g_RandomLocationX(g_RandomGenerator2), g_RandomLocationY(g_RandomGenerator2)), m_SoundContainer, m_TextureHolder);
+			LargeAsteroid* s_NewAsteroid = new LargeAsteroid(sf::Vector2f(g_RandomLocationX(g_RandomGenerator2), g_RandomLocationY(g_RandomGenerator2)), m_SoundManager, m_TextureManager);
 			s_NewAsteroid->SetVelocity(g_RandomSpeed(g_RandomGenerator2));
 			AddObject(s_NewAsteroid);
 		}

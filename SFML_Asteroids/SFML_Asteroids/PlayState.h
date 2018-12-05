@@ -8,7 +8,7 @@
 class PlayState : public GameState
 {
 public:
-	PlayState(StateMachine* Machine, Engine* Engine, SoundContainer* SoundContainer, TextureHolder* TextureHolder);
+	PlayState(StateMachine* Machine, Engine* Engine, SoundManager* SoundManager, TextureManager* TextureManager);
 
 	void Update(sf::RenderWindow* Window, float DeltaTime);
 	void Draw(sf::RenderWindow* Window);
@@ -35,7 +35,6 @@ private:
 	bool m_IsGameOver;
 
 	// For the Sprites that Represent the remaining Lives
-	sf::Texture m_LivesTexture;
 	sf::Color m_LivesColor;
 
 	sf::Font m_Font;

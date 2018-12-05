@@ -3,8 +3,8 @@
 /*^ This is included to avoid the "pointer to incomplete class type"
 error, as a result of forward declaring the StateMachine.*/
 
-GameOverState::GameOverState(StateMachine* Machine, Engine* Engine, SoundContainer* SoundContainer, TextureHolder* TextureHolder) :
-	GameState(Machine, Engine, SoundContainer, TextureHolder),
+GameOverState::GameOverState(StateMachine* Machine, Engine* Engine, SoundManager* SoundManager, TextureManager* TextureManager) :
+	GameState(Machine, Engine, SoundManager, TextureManager),
 	m_Timer(0.0f)
 {
 	// Load the File for the Font

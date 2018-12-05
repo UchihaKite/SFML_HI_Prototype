@@ -1,7 +1,7 @@
 #include <random>
 #include <ctime>
 #include "ParticleSystem.h"
-#include "PlayState.h"
+#include "TextureManager.h"
 
 std::mt19937 g_MyGenerator((unsigned int)time(0));
 std::uniform_int_distribution<int> g_RandomSize(1, 5);
@@ -18,8 +18,8 @@ Particle::Particle(sf::Vector2f Position, sf::Color Color, float Size, float Lif
 {
 }
 
-ParticleSystem::ParticleSystem(float Count, sf::Vector2f Position, sf::Color Color, float Size, int Spread, float Angle, float Speed, int SpeedSpread, SoundContainer* SoundContainer, TextureHolder* TextureHolder)
-	: GameObject("", Position, SoundContainer, TextureHolder)
+ParticleSystem::ParticleSystem(float Count, sf::Vector2f Position, sf::Color Color, float Size, int Spread, float Angle, float Speed, int SpeedSpread, SoundManager* SoundManager, TextureManager* TextureManager)
+	: GameObject(TextureType::AMOUNT, Position, SoundManager, TextureManager)
 {
 	for (int i = 0; i < Count; i++)
 	{

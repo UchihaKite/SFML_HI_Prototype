@@ -4,12 +4,11 @@
 class Asteroid : public GameObject
 {
 public:
-	Asteroid(std::string TexturePath, const sf::Vector2f& Position, SoundContainer* SoundContainer, TextureHolder* TextureHolder);
+	Asteroid(TextureType Type, const sf::Vector2f& Position, SoundManager* SoundManager, TextureManager* TextureManager);
 	virtual void Update(sf::RenderWindow* Window, float DeltaTime);
 	inline virtual void ApplyDrag(float DeltaTime) { /* Do Nothing */ }
 protected:
 	bool m_Rotation;
-	sf::Sound m_DestroySound;
 };
 
 /*
@@ -20,20 +19,20 @@ They also will have different "m_CollisionRadius"
 class SmallAsteroid : public Asteroid
 {
 public:
-	SmallAsteroid(const sf::Vector2f& Position, SoundContainer* SoundContainer, TextureHolder* TextureHolder);
+	SmallAsteroid(const sf::Vector2f& Position, SoundManager* SoundManager, TextureManager* TextureManager);
 	virtual void Destroy();
 };
 
 class MedAsteroid : public Asteroid
 {
 public:
-	MedAsteroid(const sf::Vector2f& Position, SoundContainer* SoundContainer, TextureHolder* TextureHolder);
+	MedAsteroid(const sf::Vector2f& Position, SoundManager* SoundManager, TextureManager* TextureManager);
 	virtual void Destroy();
 };
 
 class LargeAsteroid : public Asteroid
 {
 public:
-	LargeAsteroid(const sf::Vector2f& Position, SoundContainer* SoundContainer, TextureHolder* TextureHolder);
+	LargeAsteroid(const sf::Vector2f& Position, SoundManager* SoundManager, TextureManager* TextureManager);
 	virtual void Destroy();
 };

@@ -1,8 +1,7 @@
 #include "GameObject.h"
-#include "TextureHolder.h"
-#include <iostream>
+#include "TextureManager.h"
 
-GameObject::GameObject(std::string TexturePath, const sf::Vector2f& Position, SoundContainer* SoundContainer, TextureHolder* TextureHolder) :
+GameObject::GameObject(TextureType Type, const sf::Vector2f& Position, SoundManager* SoundManager, TextureManager* TextureManager) :
 	m_Position(Position),
 	m_Velocity(sf::Vector2f(0.0f, 0.0f)),
 	m_Accel(sf::Vector2f(0.0f, 0.0f)),
@@ -10,13 +9,12 @@ GameObject::GameObject(std::string TexturePath, const sf::Vector2f& Position, So
 	m_CollisionRadius(0.0f),
 	m_Destroyed(false)
 {
-	m_SoundContainer = SoundContainer;
-	m_TextureHolder = TextureHolder;
+	m_SoundManager = SoundManager;
+	m_TextureManager = TextureManager;
 	// Load the Texture and Assign the Sprite
-	if (TexturePath != "")
+	if (Type < TextureType::AMOUNT)
 	{
-		m_Texture = m_TextureHolder->GetTexture(TexturePath); // Use the Container to Load Texture
-		m_Sprite.setTexture(m_Texture);
+		m_Sprite.setTexture(m_TextureManager->ReturnTexture(Type));
 		m_Sprite.setOrigin(m_Sprite.getTextureRect().width * 0.5f, m_Sprite.getTextureRect().height * 0.5f);
 		// ^ Set Origin to the Center of the Sprite
 	}

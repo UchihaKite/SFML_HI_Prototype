@@ -147,10 +147,12 @@
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="ScoreManager.cpp" />
     <ClCompile Include="SoundContainer.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="StarParticleSystem.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="TextureHolder.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="TitleScreenState.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -165,10 +167,12 @@
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="SoundContainer.h" />
+    <ClInclude Include="SoundManager.h" />
     <ClInclude Include="StarParticleSystem.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateMachine.h" />
     <ClInclude Include="TextureHolder.h" />
+    <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TitleScreenState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

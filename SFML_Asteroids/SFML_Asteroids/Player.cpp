@@ -3,21 +3,17 @@
 #include "Asteroids.h"
 #include "Bullet.h"
 #include "ParticleSystem.h"
-#include "SoundContainer.h"
+#include "TextureManager.h"
 
-Player::Player(std::string TexturePath, const sf::Vector2f& Position, SoundContainer* SoundContainer, TextureHolder* TextureHolder)
-	: GameObject(TexturePath, Position, SoundContainer, TextureHolder),
+Player::Player(TextureType Type, const sf::Vector2f& Position, SoundManager* SoundManager, TextureManager* TextureManager)
+	: GameObject(Type, Position, SoundManager, TextureManager),
 	m_Firing(false),
 	m_Cooldown(0.0f),
 	m_Timer(0.0f),
 	m_IsInvulnerable(true)
 
 {
-	m_ShootingSound = m_SoundContainer->GetSound("Game Assets/Audio/Shooting.wav");
-	m_DyingSound = m_SoundContainer->GetSound("Game Assets/Audio/Dying.wav");
-	m_RespawnSound = m_SoundContainer->GetSound("Game Assets/Audio/Respawn.wav");
-
-	m_RespawnSound.play();
+	m_SoundManager->PlaySound(PLAYER_RESPAWN);
 }
 
 void Player::Draw(sf::RenderWindow* Window)
@@ -77,8 +73,8 @@ void Player::Update(sf::RenderWindow* Window, float DeltaTime)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		SetAccel(400.0f);
-		m_Owner->AddObject(new ParticleSystem(1, m_Position + sf::Vector2f(sin(DEG_TO_RAD * (m_Angle + 90)) * 50, -cos(DEG_TO_RAD * (m_Angle + 90)) * 50), sf::Color::Blue, 1, 0, -m_Angle, 400, 0, m_SoundContainer, m_TextureHolder));
-		m_Owner->AddObject(new ParticleSystem(1, m_Position + sf::Vector2f(sin(DEG_TO_RAD * (m_Angle - 90)) * 50, -cos(DEG_TO_RAD * (m_Angle - 90)) * 50), sf::Color::Blue, 1, 0, -m_Angle, 400, 0, m_SoundContainer, m_TextureHolder));
+		m_Owner->AddObject(new ParticleSystem(1, m_Position + sf::Vector2f(sin(DEG_TO_RAD * (m_Angle + 90)) * 50, -cos(DEG_TO_RAD * (m_Angle + 90)) * 50), sf::Color::Blue, 1, 0, -m_Angle, 400, 0, m_SoundManager, m_TextureManager));
+		m_Owner->AddObject(new ParticleSystem(1, m_Position + sf::Vector2f(sin(DEG_TO_RAD * (m_Angle - 90)) * 50, -cos(DEG_TO_RAD * (m_Angle - 90)) * 50), sf::Color::Blue, 1, 0, -m_Angle, 400, 0, m_SoundManager, m_TextureManager));
 	}
 	else
 	{
@@ -104,10 +100,10 @@ void Player::Update(sf::RenderWindow* Window, float DeltaTime)
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))
 		{
 			m_Cooldown = 2.0f;
-			m_ShootingSound.play();
+			m_SoundManager->PlaySound(PLAYER_SHOOTING);
 			for (int i = 0; i < 3; i++)
 			{
-				Bullet* s_Bullet = new Bullet(m_Position, m_SoundContainer, m_TextureHolder);
+				Bullet* s_Bullet = new Bullet(m_Position, m_SoundManager, m_TextureManager);
 				s_Bullet->SetAngle(m_Angle + i * 15 - 15);
 				s_Bullet->SetVelocity(500);
 				m_Owner->AddObject(s_Bullet);
@@ -115,9 +111,9 @@ void Player::Update(sf::RenderWindow* Window, float DeltaTime)
 		}
 		else
 		{
-			m_ShootingSound.play();
+			m_SoundManager->PlaySound(PLAYER_SHOOTING);
 			m_Cooldown = 0.2f;
-			Bullet* s_Bullet = new Bullet(m_Position, m_SoundContainer, m_TextureHolder);
+			Bullet* s_Bullet = new Bullet(m_Position, m_SoundManager, m_TextureManager);
 			s_Bullet->SetAngle(m_Angle);
 			s_Bullet->SetVelocity(500);
 			m_Owner->AddObject(s_Bullet);
@@ -133,7 +129,7 @@ void Player::CollidedWith(GameObject* other)
 		if (s_Asteroid != nullptr)
 		{
 			Destroy();
-			m_DyingSound.play();
+			m_SoundManager->PlaySound(PLAYER_DYING);
 			m_IsInvulnerable = true;
 		}
 	}
