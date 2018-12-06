@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <memory>
 
 #define DEG_TO_RAD (0.0174532925f) // Degrees to Radians
 
@@ -12,7 +13,7 @@ enum TextureType;
 class GameObject
 {
 public:
-	GameObject(TextureType Type, const sf::Vector2f& Position, SoundManager* SoundManager, TextureManager* TextureManager);
+	GameObject(TextureType Type, const sf::Vector2f& Position, std::shared_ptr<SoundManager> SoundManager, std::shared_ptr<TextureManager> TextureManager);
 
 	virtual void Update(sf::RenderWindow* Window, float DeltaTime);
 	virtual void Draw(sf::RenderWindow* Window);
@@ -51,6 +52,6 @@ protected:
 	float m_CollisionRadius;
 	bool m_Destroyed;
 
-	SoundManager* m_SoundManager;
-	TextureManager* m_TextureManager;
+	std::shared_ptr<SoundManager> m_SoundManager;
+	std::shared_ptr<TextureManager> m_TextureManager;
 };

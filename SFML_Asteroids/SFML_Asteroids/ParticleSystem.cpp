@@ -18,7 +18,7 @@ Particle::Particle(sf::Vector2f Position, sf::Color Color, float Size, float Lif
 {
 }
 
-ParticleSystem::ParticleSystem(float Count, sf::Vector2f Position, sf::Color Color, float Size, int Spread, float Angle, float Speed, int SpeedSpread, SoundManager* SoundManager, TextureManager* TextureManager)
+ParticleSystem::ParticleSystem(float Count, sf::Vector2f Position, sf::Color Color, float Size, int Spread, float Angle, float Speed, int SpeedSpread, std::shared_ptr<SoundManager> SoundManager, std::shared_ptr<TextureManager> TextureManager)
 	: GameObject(TextureType::AMOUNT, Position, SoundManager, TextureManager)
 {
 	for (int i = 0; i < Count; i++)

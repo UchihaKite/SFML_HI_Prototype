@@ -3,7 +3,7 @@
 #include "PlayState.h"
 #include "TextureManager.h"
 
-Bullet::Bullet(const sf::Vector2f & Position, SoundManager* SoundManager, TextureManager* TextureManager)
+Bullet::Bullet(const sf::Vector2f & Position, std::shared_ptr<SoundManager> SoundManager, std::shared_ptr<TextureManager> TextureManager)
 	: GameObject(BULLET, Position, SoundManager, TextureManager)
 	, m_TimeAlive(0.0f)
 {

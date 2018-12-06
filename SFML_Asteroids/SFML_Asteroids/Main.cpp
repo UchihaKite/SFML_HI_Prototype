@@ -9,22 +9,22 @@ int main()
 	// Create the Window
 	sf::RenderWindow s_Window(sf::VideoMode(g_Resolution.x, g_Resolution.y), "Asteroids!");
 
-	SoundManager* s_SoundManager = new SoundManager();
-	s_SoundManager->LoadSoundBuffers();
-	s_SoundManager->SetLoop(BACKGROUND_SONG, true);
+	std::shared_ptr<SoundManager> sp_SoundManager = std::make_shared<SoundManager>();
+	sp_SoundManager->LoadSoundBuffers();
+	sp_SoundManager->SetLoop(BACKGROUND_SONG, true);
 
-	TextureManager* s_TextureManager = new TextureManager();
-	s_TextureManager->LoadTextures();
+	std::shared_ptr<TextureManager> sp_TextureManager = std::make_shared<TextureManager>();
+	sp_TextureManager->LoadTextures();
 
 	// Hide the Mouse Cursor
 	s_Window.setMouseCursorVisible(false);
 
 	// Background Music for the Game
 	// Use the SoundManager
-	s_SoundManager->PlaySound(BACKGROUND_SONG);
+	sp_SoundManager->PlaySound(BACKGROUND_SONG);
 
 	// Delcare Instance of the Engine
-	Engine s_Engine(s_SoundManager, s_TextureManager);
+	Engine s_Engine(sp_SoundManager, sp_TextureManager);
 
 	sf::Image s_StarImage;
 	s_StarImage.create(g_Resolution.x + 4, g_Resolution.y + 4, sf::Color::Black);
@@ -59,13 +59,6 @@ int main()
 			{
 				if (s_Event.key.code == sf::Keyboard::Escape)
 				{
-					/*
-					Make sure you clear the contents contained in "SoundContainer"
-					and in TextureHolder. Otherwise, the Program/Game will Crash
-					upon trying to Exit
-					*/
-					//TextureHolder::Clear();
-					//SoundContainer::Clear();
 					s_Window.close(); // Press "ESC" to Close the Window/Game
 				}
 			}

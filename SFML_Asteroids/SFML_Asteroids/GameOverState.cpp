@@ -3,7 +3,7 @@
 /*^ This is included to avoid the "pointer to incomplete class type"
 error, as a result of forward declaring the StateMachine.*/
 
-GameOverState::GameOverState(StateMachine* Machine, Engine* Engine, SoundManager* SoundManager, TextureManager* TextureManager) :
+GameOverState::GameOverState(StateMachine* Machine, Engine* Engine, std::shared_ptr<SoundManager> SoundManager, std::shared_ptr<TextureManager> TextureManager) :
 	GameState(Machine, Engine, SoundManager, TextureManager),
 	m_Timer(0.0f)
 {

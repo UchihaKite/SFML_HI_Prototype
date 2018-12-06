@@ -10,7 +10,7 @@ std::uniform_real_distribution<float> g_Random(1, 2);
 std::uniform_real_distribution<float> g_RandomRPositive(45, 90);
 std::uniform_real_distribution<float> g_RandomRNegative(-90, -45);
 
-Asteroid::Asteroid(TextureType Type, const sf::Vector2f& Position, SoundManager* SoundManager, TextureManager* TextureManager)
+Asteroid::Asteroid(TextureType Type, const sf::Vector2f& Position, std::shared_ptr<SoundManager> SoundManager, std::shared_ptr<TextureManager> TextureManager)
 	: GameObject(Type, Position, SoundManager, TextureManager)
 {
 	float s_RandomAngle = g_RandomAngle(g_RandomGenerator);
@@ -43,7 +43,7 @@ void Asteroid::Update(sf::RenderWindow* Window, float DeltaTime)
 	}
 }
 
-SmallAsteroid::SmallAsteroid(const sf::Vector2f& Position, SoundManager* SoundManager, TextureManager* TextureManager)
+SmallAsteroid::SmallAsteroid(const sf::Vector2f& Position, std::shared_ptr<SoundManager> SoundManager, std::shared_ptr<TextureManager> TextureManager)
 	: Asteroid(ASTEROID_SMALL, Position, SoundManager, TextureManager)
 {
 	m_CollisionRadius = 15;
@@ -55,7 +55,7 @@ void SmallAsteroid::Destroy()
 	Asteroid::Destroy();
 }
 
-MedAsteroid::MedAsteroid(const sf::Vector2f& Position, SoundManager* SoundManager, TextureManager* TextureManager)
+MedAsteroid::MedAsteroid(const sf::Vector2f& Position, std::shared_ptr<SoundManager> SoundManager, std::shared_ptr<TextureManager> TextureManager)
 	: Asteroid(ASTEROID_MED, Position, SoundManager, TextureManager)
 {
 	m_CollisionRadius = 30.0f;
@@ -76,7 +76,7 @@ void MedAsteroid::Destroy()
 	}
 }
 
-LargeAsteroid::LargeAsteroid(const sf::Vector2f& Position, SoundManager* SoundManager, TextureManager* TextureManager)
+LargeAsteroid::LargeAsteroid(const sf::Vector2f& Position, std::shared_ptr<SoundManager> SoundManager, std::shared_ptr<TextureManager> TextureManager)
 	: Asteroid(ASTEROID_LARGE, Position, SoundManager, TextureManager)
 {
 	// Collision Radius is set in the Parent Class

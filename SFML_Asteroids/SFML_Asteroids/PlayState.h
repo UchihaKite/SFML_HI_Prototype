@@ -8,7 +8,7 @@
 class PlayState : public GameState
 {
 public:
-	PlayState(StateMachine* Machine, Engine* Engine, SoundManager* SoundManager, TextureManager* TextureManager);
+	PlayState(StateMachine* Machine, Engine* Engine, std::shared_ptr<SoundManager> SoundManager, std::shared_ptr<TextureManager> TextureManager);
 
 	void Update(sf::RenderWindow* Window, float DeltaTime);
 	void Draw(sf::RenderWindow* Window);
@@ -26,7 +26,7 @@ public:
 private:
 	// Store all GameObjects
 	std::vector<GameObject*> m_GameObjects;
-	ScoreManager* m_ScoreManager;
+	std::unique_ptr<ScoreManager> m_ScoreManager;
 	int m_ScoreTracker;
 	int m_LivesRemaining;
 	float m_TimeUntilRespawn;

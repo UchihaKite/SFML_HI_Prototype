@@ -5,7 +5,7 @@ error, as a result of forward declaring the StateMachine.*/
 
 #include <iostream>
 
-TitleScreenState::TitleScreenState(StateMachine* Machine, Engine* Engine, SoundManager* SoundManager, TextureManager* TextureManager) :
+TitleScreenState::TitleScreenState(StateMachine* Machine, Engine* Engine, std::shared_ptr<SoundManager> SoundManager, std::shared_ptr<TextureManager> TextureManager) :
 	GameState(Machine, Engine, SoundManager, TextureManager)
 {
 	// Load the File for the Font

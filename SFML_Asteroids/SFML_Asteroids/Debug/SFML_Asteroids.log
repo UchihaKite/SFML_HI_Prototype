@@ -10,10 +10,13 @@
   PlayState.cpp
   ScoreManager.cpp
   SoundContainer.cpp
+  SoundManager.cpp
   StarParticleSystem.cpp
   State.cpp
   StateMachine.cpp
   TextureHolder.cpp
+  TextureManager.cpp
   TitleScreenState.cpp
   Generating Code...
+c:\users\uchihakite\desktop\sfml_hi_prototype\sfml_asteroids\sfml_asteroids\texturemanager.cpp(32): warning C4715: 'TextureManager::ReturnTexture': not all control paths return a value
   SFML_Asteroids.vcxproj -> C:\Users\UchihaKite\Desktop\SFML_HI_Prototype\SFML_Asteroids\Debug\SFML_Asteroids.exe

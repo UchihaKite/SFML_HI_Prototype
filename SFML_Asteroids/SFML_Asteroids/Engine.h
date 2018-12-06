@@ -5,7 +5,7 @@
 class Engine
 {
 public:
-	Engine(SoundManager* SoundManager, TextureManager* TextureManager);
+	Engine(std::shared_ptr<SoundManager> SoundManager, std::shared_ptr<TextureManager> TextureManager);
 	~Engine();
 
 	void Update(sf::RenderWindow* Window, float DeltaTime); // Update Engine Internals
@@ -15,6 +15,6 @@ private:
 	StateMachine* m_StateMachine;
 
 	// Instance of the Utilities
-	SoundManager* m_SoundManager;
-	TextureManager* m_TextureManager;
+	std::shared_ptr<SoundManager> m_SoundManager;
+	std::shared_ptr<TextureManager> m_TextureManager;
 };

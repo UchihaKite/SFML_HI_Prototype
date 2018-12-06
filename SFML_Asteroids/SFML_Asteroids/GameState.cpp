@@ -1,7 +1,7 @@
 #include "GameState.h"
 #include "Engine.h"
 
-GameState::GameState(StateMachine* Machine, Engine* Engine, SoundManager* SoundManager, TextureManager* TextureManager) :
+GameState::GameState(StateMachine* Machine, Engine* Engine, std::shared_ptr<SoundManager> SoundManager, std::shared_ptr<TextureManager> TextureManager) :
 	State(Machine),
 	m_Engine(Engine),
 	m_SoundManager(SoundManager),

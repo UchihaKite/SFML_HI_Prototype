@@ -8,7 +8,7 @@ class TextureManager;
 class GameState : public State
 {
 public:
-	GameState(StateMachine* Machine, Engine* Engine, SoundManager* SoundManager, TextureManager* TextureManager);
+	GameState(StateMachine* Machine, Engine* Engine, std::shared_ptr<SoundManager> SoundManager, std::shared_ptr<TextureManager> TextureManager);
 
 	virtual void Update(sf::RenderWindow* Window, float DeltaTime);
 	virtual void Draw(sf::RenderWindow* Window);
@@ -18,6 +18,6 @@ public:
 	inline Engine* GetEngine() { return m_Engine; }
 protected:
 	Engine* m_Engine;
-	SoundManager* m_SoundManager;
-	TextureManager* m_TextureManager;
+	std::shared_ptr<SoundManager> m_SoundManager;
+	std::shared_ptr<TextureManager> m_TextureManager;
 };

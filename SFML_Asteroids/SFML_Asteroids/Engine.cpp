@@ -3,7 +3,7 @@
 #include "PlayState.h"
 #include "GameOverState.h"
 
-Engine::Engine(SoundManager* SoundManager, TextureManager* TextureManager)
+Engine::Engine(std::shared_ptr<SoundManager> SoundManager, std::shared_ptr<TextureManager> TextureManager)
 {
 	m_SoundManager = SoundManager;
 	m_TextureManager = TextureManager;

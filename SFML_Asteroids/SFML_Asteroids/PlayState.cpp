@@ -16,7 +16,7 @@ std::uniform_real_distribution<float> g_RandomLocationX(0.0f, sf::VideoMode::get
 std::uniform_real_distribution<float> g_RandomLocationY(0.0f, sf::VideoMode::getDesktopMode().height / 2.0f);
 std::uniform_real_distribution<float> g_RandomSpeed(100.0f, 300.0f);
 
-PlayState::PlayState(StateMachine* Machine, Engine* Engine, SoundManager* SoundManager, TextureManager* TextureManager) :
+PlayState::PlayState(StateMachine* Machine, Engine* Engine, std::shared_ptr<SoundManager> SoundManager, std::shared_ptr<TextureManager> TextureManager) :
 	GameState(Machine, Engine, SoundManager, TextureManager),
 	m_ScoreTracker(0),
 	m_LivesRemaining(4),
@@ -26,7 +26,7 @@ PlayState::PlayState(StateMachine* Machine, Engine* Engine, SoundManager* SoundM
 	m_IsGameOver(false)
 
 {
-	m_ScoreManager = new ScoreManager();
+	m_ScoreManager = std::make_unique<ScoreManager>();
 
 	m_Font.loadFromFile("Game Assets/Font/kenpixel_high_square.ttf");
 

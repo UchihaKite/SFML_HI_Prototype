@@ -1,7 +1,7 @@
 #include "GameObject.h"
 #include "TextureManager.h"
 
-GameObject::GameObject(TextureType Type, const sf::Vector2f& Position, SoundManager* SoundManager, TextureManager* TextureManager) :
+GameObject::GameObject(TextureType Type, const sf::Vector2f& Position, std::shared_ptr<SoundManager> SoundManager, std::shared_ptr<TextureManager> TextureManager) :
 	m_Position(Position),
 	m_Velocity(sf::Vector2f(0.0f, 0.0f)),
 	m_Accel(sf::Vector2f(0.0f, 0.0f)),
