@@ -9,6 +9,8 @@ int main()
 	// Create the Window
 	sf::RenderWindow s_Window(sf::VideoMode(g_Resolution.x, g_Resolution.y), "Asteroids!");
 
+	s_Window.setFramerateLimit(60);
+
 	std::shared_ptr<SoundManager> sp_SoundManager = std::make_shared<SoundManager>();
 	sp_SoundManager->LoadSoundBuffers();
 	sp_SoundManager->SetLoop(BACKGROUND_SONG, true);
@@ -27,7 +29,7 @@ int main()
 	Engine s_Engine(sp_SoundManager, sp_TextureManager);
 
 	sf::Image s_StarImage;
-	s_StarImage.create(g_Resolution.x + 4, g_Resolution.y + 4, sf::Color::Black);
+	s_StarImage.create(g_Resolution.x, g_Resolution.y, sf::Color::Black);
 
 	/*
 	Do not use the TextureContainer if you are using a "sf::Image"
