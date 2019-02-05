@@ -26,8 +26,10 @@ PlayState::PlayState(StateMachine* Machine, Engine* Engine, std::shared_ptr<Soun
 	m_IsGameOver(false),
 	// Juston's Stuff
 
-	m_GameTimer(1.00f)
+	m_GameTimer(10.0f)
+	//-----------------------
 
+	
 {
 	m_ScoreManager = std::make_unique<ScoreManager>();
 
@@ -36,12 +38,18 @@ PlayState::PlayState(StateMachine* Machine, Engine* Engine, std::shared_ptr<Soun
 	m_LivesColor = sf::Color::White;
 	m_LivesColor.a = 120;
 
+
+	SetUpText();
 	
 }
 
 void PlayState::Update(sf::RenderWindow* Window, float DeltaTime)
 {
 	m_ScoreManager->Update(m_ScoreTracker);
+
+	//Juston's Stuff
+	m_GameTimer += DeltaTime;
+	//-------------------------------
 
 	if (m_TimeUntilRespawn > 0.0f)
 	{
@@ -108,6 +116,46 @@ void PlayState::Update(sf::RenderWindow* Window, float DeltaTime)
 	}
 }
 
+
+
+// Juston's Stuff
+void PlayState::SetUpText()
+{
+
+	m_Font.loadFromFile("Game Assets/Font/kenpixel_high_square.ttf");
+
+	m_TimerText.setFont(m_Font);
+	m_TimerText.setCharacterSize(30);
+	m_TimerText.setFillColor(sf::Color::White);
+	m_TimerText.setPosition(sf::VideoMode::getDesktopMode().width / 25.0f, sf::VideoMode::getDesktopMode().height / 80.0f);
+
+	std::stringstream s_SStream;
+	s_SStream << "Time: " << m_GameTimer;
+	m_TimerText.setString(s_SStream.str());
+
+
+}
+
+
+void PlayState::UpdateTime(float GameTimer)
+{
+
+
+	if (m_GameTimer != GameTimer)
+	{
+
+		m_GameTimer = GameTimer;
+		m_ttTimerText.str(std::string());
+		m_ttTimerText << "Score: " << m_GameTimer;
+		m_TimerText.setString(m_ttTimerText.str());
+
+
+	}
+
+
+}
+//---------------------------------------------------------------------------------------------
+
 void PlayState::Draw(sf::RenderWindow* Window)
 {
 	for (unsigned int i = 0; i < m_GameObjects.size(); i++)
@@ -126,6 +174,10 @@ void PlayState::Draw(sf::RenderWindow* Window)
 		s_PlayerLives.setPosition((sf::VideoMode::getDesktopMode().width / 25.0f) + 50 * i, sf::VideoMode::getDesktopMode().height / 15.0f);
 		Window->draw(s_PlayerLives);
 	}
+	// Juston's Stuff
+	Window->draw(m_TimerText);
+	//--------------------------------
+
 	m_ScoreManager->Draw(Window);
 }
 
@@ -146,7 +198,8 @@ void PlayState::OnExit()
 	m_IsGameOver = false;
 	// Juston's Stuff
 
-	m_GameTimer = 1.00f;
+	m_GameTimer = 10.0f;
+	//--------------------
 }
 
 void PlayState::AddObject(GameObject* Object)
@@ -183,3 +236,4 @@ void PlayState::SpawnAsteroids(int Level)
 		m_ProceedLevel = false;
 	}
 }
+

@@ -1,2 +1,7 @@
-﻿  PlayState.cpp
+﻿  Asteroids.cpp
+  Bullet.cpp
+  Engine.cpp
+  PlayState.cpp
+  Player.cpp
+  Generating Code...
   SFML_Asteroids.vcxproj -> C:\Users\justo\Desktop\SFML_HI_Prototype\SFML_Asteroids\Debug\SFML_Asteroids.exe
