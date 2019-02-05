@@ -23,7 +23,10 @@ PlayState::PlayState(StateMachine* Machine, Engine* Engine, std::shared_ptr<Soun
 	m_LevelTracker(1),
 	m_ProceedLevel(false),
 	m_TimeUntilRespawn(2.0f),
-	m_IsGameOver(false)
+	m_IsGameOver(false),
+	// Juston's Stuff
+
+	m_GameTimer(1.00f)
 
 {
 	m_ScoreManager = std::make_unique<ScoreManager>();
@@ -32,6 +35,8 @@ PlayState::PlayState(StateMachine* Machine, Engine* Engine, std::shared_ptr<Soun
 
 	m_LivesColor = sf::Color::White;
 	m_LivesColor.a = 120;
+
+	
 }
 
 void PlayState::Update(sf::RenderWindow* Window, float DeltaTime)
@@ -43,6 +48,7 @@ void PlayState::Update(sf::RenderWindow* Window, float DeltaTime)
 		m_TimeUntilRespawn -= DeltaTime;
 		if (m_TimeUntilRespawn <= 0.0f)
 		{
+
 			Player* s_Player = new Player(PLAYER, sf::Vector2f(sf::VideoMode::getDesktopMode().width / 4.0f, sf::VideoMode::getDesktopMode().height / 4.0f), m_SoundManager, m_TextureManager);
 			AddObject(s_Player);
 		}
@@ -78,7 +84,7 @@ void PlayState::Update(sf::RenderWindow* Window, float DeltaTime)
 			}
 			if (dynamic_cast<Player*>(s_Current) != NULL && m_LivesRemaining > 0)
 			{
-				m_TimeUntilRespawn = 2.0f;
+				m_TimeUntilRespawn = m_TimeUntilRespawn+10;
 				m_LivesRemaining--;
 			}
 			delete s_Current;
@@ -138,6 +144,9 @@ void PlayState::OnExit()
 	m_ProceedLevel = false;
 	m_TimeUntilRespawn = 2.0f;
 	m_IsGameOver = false;
+	// Juston's Stuff
+
+	m_GameTimer = 1.00f;
 }
 
 void PlayState::AddObject(GameObject* Object)

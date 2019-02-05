@@ -34,6 +34,10 @@ private:
 	bool m_ProceedLevel;
 	bool m_IsGameOver;
 
+	// Juston's Stuff
+
+	float m_GameTimer;
+
 	// For the Sprites that Represent the remaining Lives
 	sf::Color m_LivesColor;
 

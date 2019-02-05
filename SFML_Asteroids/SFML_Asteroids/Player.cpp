@@ -56,6 +56,7 @@ void Player::Update(sf::RenderWindow* Window, float DeltaTime)
 	m_Timer += DeltaTime;
 
 	GameObject::Update(Window, DeltaTime);
+	
 
 	if (m_Timer >= 3.0f)
 	{
