@@ -6,6 +6,7 @@
 #define DEG_TO_RAD (0.0174532925f) // Degrees to Radians
 
 class PlayState; // Forward declare the "GameState" Where all the Gameplay happens
+class TPlayState;
 class SoundManager;
 class TextureManager;
 enum TextureType;
@@ -51,6 +52,7 @@ protected:
 	float m_Angle;
 	float m_CollisionRadius;
 	bool m_Destroyed;
+	bool m_DestroyedByPowerUp;
 
 	std::shared_ptr<SoundManager> m_SoundManager;
 	std::shared_ptr<TextureManager> m_TextureManager;

@@ -15,9 +15,15 @@ public:
 	bool IsFiring();
 	bool IsInvulnerable();
 	void SetInvulernable();
+
+	inline void LoadBomb() { m_BombObtained = true; }
+	inline void LoadShield() { m_ShieldObtained = true; }
 private:
 	bool m_Firing;
 	float m_Cooldown;
 	float m_Timer;
 	bool m_IsInvulnerable;
+	bool m_BombObtained;
+	int m_BombCounter;
+	bool m_ShieldObtained;
 };

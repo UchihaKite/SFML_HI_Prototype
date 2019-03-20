@@ -2,51 +2,57 @@
 #include "GameState.h"
 #include "GameObject.h"
 #include "ScoreManager.h"
-
-#include <vector>
+#include "Leaderboard.h"
 
 class PlayState : public GameState
 {
 public:
 	PlayState(StateMachine* Machine, Engine* Engine, std::shared_ptr<SoundManager> SoundManager, std::shared_ptr<TextureManager> TextureManager);
 
-	void Update(sf::RenderWindow* Window, float DeltaTime);
-	void Draw(sf::RenderWindow* Window);
+	virtual void Update(sf::RenderWindow* Window, float DeltaTime);
+	virtual void Draw(sf::RenderWindow* Window);
 
-	void OnEnter();
-	void OnExit();
+	virtual void OnEnter();
+	virtual void OnExit();
 
 	// Add GameObjects to the std::vector
-	void AddObject(GameObject* Object);
-	void UpdateScore(int Score);
-	void UpdateTime(float GameTimer);
+	virtual void AddObject(GameObject* Object);
 
+	virtual void UpdateScore(int Score);
+	virtual void UpdateGameTime(float GameTimer);
 
 	// To Spawn Asteroids after Level 1
-	void SpawnAsteroids(int Level);
+	virtual void SpawnAsteroids(int Level);
 
-private:
+	// To Spawn Power-Ups
+	virtual void SpawnPowerUps(int Type);
+
+protected:
 	// Store all GameObjects
 	std::vector<GameObject*> m_GameObjects;
-	std::unique_ptr<ScoreManager> m_ScoreManager;
 
 	int m_ScoreTracker;
-	int m_LivesRemaining;
 	float m_TimeUntilRespawn;
+	float m_RespawnTime;
 	int m_LevelTracker;
 	bool m_ProceedLevel;
 	bool m_IsGameOver;
 
-	// Juston's Stuff
-	void SetUpText();
+	// Set Up Text for the GameTimer
+	virtual void SetUpText();
 	float m_GameTimer;
-	sf::Text m_TimerText;
-	std::stringstream m_ttTimerText;
-
-	// For the Sprites that Represent the remaining Lives
-	sf::Color m_LivesColor;
+	float m_MaxGameTime;
+	sf::Text m_GameTimerText;
+	std::stringstream m_ssGameTimerText;
 
 	sf::Font m_Font;
-	sf::Text m_OutcomeText;
+	std::stringstream m_ssLevelText;
 	sf::Text m_LevelText;
+
+	float m_PowerUpTimer;
+	bool m_PowerUpSpawned;
+	bool m_PowerUpAttack;
+
+private:
+	std::unique_ptr<Leaderboard> m_Leaderboard;
 };

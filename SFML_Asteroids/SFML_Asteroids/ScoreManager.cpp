@@ -1,9 +1,10 @@
 #include "ScoreManager.h"
 #include <iostream>
 
-ScoreManager::ScoreManager() :
+ScoreManager::ScoreManager(std::string FileName) :
 	m_Score(0),
-	m_HighScore(0)
+	m_HighScore(0),
+	m_FileName(FileName)
 {
 	SetUpText();
 }
@@ -28,7 +29,7 @@ void ScoreManager::SetUpText()
 	s_SStream << "Score: " << m_Score;
 	m_ScoreText.setString(s_SStream.str());
 
-	std::ifstream s_InputFile("Game Assets/GameData/Score.txt");
+	std::ifstream s_InputFile(m_FileName);
 	/*
 	If the File is Open (If the file doesn't exist, it'll be created)
 	then take the content of the file and store it in

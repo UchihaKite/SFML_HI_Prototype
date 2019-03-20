@@ -25,7 +25,7 @@ public:
 	void PopState();
 
 private:
-	State * m_CurrentState; // Mark Current State for Updates and Renders
+	State* m_CurrentState; // Mark Current State for Updates and Renders
 	std::map<std::string, State*> m_States; // Map of all States and their Identifiers
 	std::vector<State*> m_StateStack; // Stack for Pushing in New States
 };

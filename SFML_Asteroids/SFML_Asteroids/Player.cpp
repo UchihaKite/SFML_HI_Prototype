@@ -4,13 +4,17 @@
 #include "Bullet.h"
 #include "ParticleSystem.h"
 #include "TextureManager.h"
+#include "Bomb.h"
 
 Player::Player(TextureType Type, const sf::Vector2f& Position, std::shared_ptr<SoundManager> SoundManager, std::shared_ptr<TextureManager> TextureManager)
 	: GameObject(Type, Position, SoundManager, TextureManager),
 	m_Firing(false),
 	m_Cooldown(0.0f),
 	m_Timer(0.0f),
-	m_IsInvulnerable(true)
+	m_IsInvulnerable(true),
+	m_BombObtained(false),
+	m_BombCounter(0),
+	m_ShieldObtained(false)
 
 {
 	m_SoundManager->PlaySound(PLAYER_RESPAWN);
@@ -52,6 +56,11 @@ void Player::Draw(sf::RenderWindow* Window)
 
 void Player::Update(sf::RenderWindow* Window, float DeltaTime)
 {
+	if (m_ShieldObtained == true)
+	{
+		m_Timer = 0.0f;
+		m_ShieldObtained = false;
+	}
 	m_Cooldown -= DeltaTime;
 	m_Timer += DeltaTime;
 
@@ -61,6 +70,10 @@ void Player::Update(sf::RenderWindow* Window, float DeltaTime)
 	if (m_Timer >= 3.0f)
 	{
 		m_IsInvulnerable = false;
+	}
+	else
+	{
+		m_IsInvulnerable = true;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
@@ -97,27 +110,44 @@ void Player::Update(sf::RenderWindow* Window, float DeltaTime)
 
 	if (m_Firing && m_Cooldown <= 0.0f)
 	{
-		// Wants to do a multishot here
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))
+		if (m_BombObtained == false)
 		{
-			m_Cooldown = 2.0f;
-			m_SoundManager->PlaySound(PLAYER_SHOOTING);
-			for (int i = 0; i < 3; i++)
+			// Wants to do a multishot here
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))
 			{
+				m_Cooldown = 2.0f;
+				m_SoundManager->PlaySound(PLAYER_SHOOTING);
+				for (int i = 0; i < 3; i++)
+				{
+					Bullet* s_Bullet = new Bullet(m_Position, m_SoundManager, m_TextureManager);
+					s_Bullet->SetAngle(m_Angle + i * 15 - 15);
+					s_Bullet->SetVelocity(500);
+					m_Owner->AddObject(s_Bullet);
+				}
+			}
+			else
+			{
+				m_SoundManager->PlaySound(PLAYER_SHOOTING);
+				m_Cooldown = 0.2f;
 				Bullet* s_Bullet = new Bullet(m_Position, m_SoundManager, m_TextureManager);
-				s_Bullet->SetAngle(m_Angle + i * 15 - 15);
+				s_Bullet->SetAngle(m_Angle);
 				s_Bullet->SetVelocity(500);
 				m_Owner->AddObject(s_Bullet);
 			}
 		}
-		else
+		else if (m_BombObtained == true && m_BombCounter < 3)
 		{
 			m_SoundManager->PlaySound(PLAYER_SHOOTING);
-			m_Cooldown = 0.2f;
-			Bullet* s_Bullet = new Bullet(m_Position, m_SoundManager, m_TextureManager);
-			s_Bullet->SetAngle(m_Angle);
-			s_Bullet->SetVelocity(500);
-			m_Owner->AddObject(s_Bullet);
+			m_Cooldown = 1.0f;
+			Bomb* s_Bomb = new Bomb(m_Position, m_SoundManager, m_TextureManager);
+			s_Bomb->SetAngle(m_Angle);
+			s_Bomb->SetVelocity(300);
+			m_Owner->AddObject(s_Bomb);
+		}
+		else if (m_BombObtained == true && m_BombCounter >= 3)
+		{
+			m_BombObtained = false;
+			m_BombCounter = 0;
 		}
 	}
 }

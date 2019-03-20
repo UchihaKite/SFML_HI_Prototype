@@ -6,7 +6,7 @@
 class ScoreManager
 {
 public:
-	ScoreManager();
+	ScoreManager(std::string FileName);
 
 	void SetUpText();
 
@@ -25,4 +25,6 @@ private:
 
 	std::stringstream m_ssScore;
 	std::stringstream m_ssHighScore;
+
+	std::string m_FileName;
 };

@@ -1,5 +1,6 @@
 #include "Engine.h"
 #include "StarParticleSystem.h"
+#include <iostream>
 
 // Declare the Resoltuion of the Game
 sf::Vector2i g_Resolution(sf::VideoMode::getDesktopMode().width / 2, sf::VideoMode::getDesktopMode().height / 2);
@@ -18,6 +19,9 @@ int main()
 	std::shared_ptr<TextureManager> sp_TextureManager = std::make_shared<TextureManager>();
 	sp_TextureManager->LoadTextures();
 
+	int NumPlayers = 0;
+	std::shared_ptr<int> sp_NumPlayers = std::make_shared<int>(NumPlayers);
+
 	// Hide the Mouse Cursor
 	s_Window.setMouseCursorVisible(false);
 
@@ -26,7 +30,7 @@ int main()
 	sp_SoundManager->PlaySound(BACKGROUND_SONG);
 
 	// Delcare Instance of the Engine
-	Engine s_Engine(sp_SoundManager, sp_TextureManager);
+	Engine s_Engine(sp_SoundManager, sp_TextureManager, sp_NumPlayers);
 
 	sf::Image s_StarImage;
 	s_StarImage.create(g_Resolution.x, g_Resolution.y, sf::Color::Black);

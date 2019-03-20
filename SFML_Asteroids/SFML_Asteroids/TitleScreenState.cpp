@@ -23,15 +23,19 @@ TitleScreenState::TitleScreenState(StateMachine* Machine, Engine* Engine, std::s
 	m_StartText.setFont(m_Font);
 	m_StartText.setCharacterSize(50);
 	m_StartText.setFillColor(sf::Color::White);
-	m_StartText.setPosition(sf::VideoMode::getDesktopMode().width / 6.0f, sf::VideoMode::getDesktopMode().height / 2.5f);
-	m_StartText.setString("Press Enter to Play");
+	m_StartText.setPosition(sf::VideoMode::getDesktopMode().width / 6.0f, sf::VideoMode::getDesktopMode().height / 3.5f);
+	m_StartText.setString("Press 1 for Regular Play\nPress 2 for Tournament Play");
 }
 
 void TitleScreenState::Update(sf::RenderWindow* Window, float DeltaTime)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 	{
 		m_Machine->ChangeState("PlayState");
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+	{
+		m_Machine->ChangeState("SetUpState");
 	}
 }
 

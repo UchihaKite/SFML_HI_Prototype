@@ -7,7 +7,8 @@ GameObject::GameObject(TextureType Type, const sf::Vector2f& Position, std::shar
 	m_Accel(sf::Vector2f(0.0f, 0.0f)),
 	m_Angle(0.0f),
 	m_CollisionRadius(0.0f),
-	m_Destroyed(false)
+	m_Destroyed(false),
+	m_DestroyedByPowerUp(false)
 {
 	m_SoundManager = SoundManager;
 	m_TextureManager = TextureManager;

@@ -136,16 +136,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Asteroids.cpp" />
+    <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameOverState.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="Leaderboard.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayState.cpp" />
+    <ClCompile Include="Power-Ups.cpp" />
+    <ClCompile Include="RoundState.cpp" />
     <ClCompile Include="ScoreManager.cpp" />
+    <ClCompile Include="SetUpState.cpp" />
     <ClCompile Include="SoundContainer.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="StarParticleSystem.cpp" />
@@ -154,18 +159,24 @@
     <ClCompile Include="TextureHolder.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="TitleScreenState.cpp" />
+    <ClCompile Include="TPlayState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Asteroids.h" />
+    <ClInclude Include="Bomb.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameOverState.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="Leaderboard.h" />
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayState.h" />
+    <ClInclude Include="Power-Ups.h" />
+    <ClInclude Include="RoundState.h" />
     <ClInclude Include="ScoreManager.h" />
+    <ClInclude Include="SetUpState.h" />
     <ClInclude Include="SoundContainer.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="StarParticleSystem.h" />
@@ -174,6 +185,7 @@
     <ClInclude Include="TextureHolder.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TitleScreenState.h" />
+    <ClInclude Include="TPlayState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

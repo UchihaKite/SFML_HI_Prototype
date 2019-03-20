@@ -51,6 +51,10 @@ SmallAsteroid::SmallAsteroid(const sf::Vector2f& Position, std::shared_ptr<Sound
 
 void SmallAsteroid::Destroy()
 {
+	if (m_DestroyedByPowerUp == true)
+	{
+		m_Owner->UpdateScore(25);
+	}
 	m_SoundManager->PlaySound(GAMEOBJECT_EXPLOSION);
 	Asteroid::Destroy();
 }
@@ -63,6 +67,10 @@ MedAsteroid::MedAsteroid(const sf::Vector2f& Position, std::shared_ptr<SoundMana
 
 void MedAsteroid::Destroy()
 {
+	if (m_DestroyedByPowerUp == true)
+	{
+		m_Owner->UpdateScore(50);
+	}
 	m_SoundManager->PlaySound(GAMEOBJECT_EXPLOSION);
 	Asteroid::Destroy();
 
@@ -84,6 +92,10 @@ LargeAsteroid::LargeAsteroid(const sf::Vector2f& Position, std::shared_ptr<Sound
 
 void LargeAsteroid::Destroy()
 {
+	if (m_DestroyedByPowerUp == true)
+	{
+		m_Owner->UpdateScore(100);
+	}
 	m_SoundManager->PlaySound(GAMEOBJECT_EXPLOSION);
 	Asteroid::Destroy();
 

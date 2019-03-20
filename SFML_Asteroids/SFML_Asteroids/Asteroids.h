@@ -7,6 +7,7 @@ public:
 	Asteroid(TextureType Type, const sf::Vector2f& Position, std::shared_ptr<SoundManager> SoundManager, std::shared_ptr<TextureManager> TextureManager);
 	virtual void Update(sf::RenderWindow* Window, float DeltaTime);
 	inline virtual void ApplyDrag(float DeltaTime) { /* Do Nothing */ }
+	inline void DestroyedByPowerUp() { m_DestroyedByPowerUp = true; }
 protected:
 	bool m_Rotation;
 };

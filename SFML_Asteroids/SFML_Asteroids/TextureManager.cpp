@@ -4,6 +4,7 @@
 TextureManager::TextureManager() :
 	m_Textures()
 {
+
 }
 
 void TextureManager::LoadTextures()

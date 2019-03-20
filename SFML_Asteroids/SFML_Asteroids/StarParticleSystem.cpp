@@ -157,7 +157,7 @@ void Starfield::Draw(sf::Texture& Texture)
 	*/
 	for (std::vector<Star>::iterator it = m_SmallStars.begin(); it != m_SmallStars.end(); ++it)
 	{
-		if ((it->GetPositionX() > 0 && it->GetPositionX() < m_WindowSizeX)
+		if ((it->GetPositionX() > 0 && it->GetPositionX() < m_WindowSizeX - 1)
 			&& (it->GetPositionY() > 0 && it->GetPositionY() < m_WindowSizeY - 1))
 		{
 			Texture.update(m_SmallStarImage, it->GetPositionX(), it->GetPositionY());
@@ -166,7 +166,7 @@ void Starfield::Draw(sf::Texture& Texture)
 
 	for (std::vector<Star>::iterator it = m_MediumStars.begin(); it != m_MediumStars.end(); ++it)
 	{
-		if ((it->GetPositionX() > 0 && it->GetPositionX() < m_WindowSizeX)
+		if ((it->GetPositionX() > 0 && it->GetPositionX() < m_WindowSizeX - 2)
 			&& (it->GetPositionY() > 0 && it->GetPositionY() < m_WindowSizeY - 2))
 		{
 			Texture.update(m_MediumStarImage, it->GetPositionX(), it->GetPositionY());
@@ -175,7 +175,7 @@ void Starfield::Draw(sf::Texture& Texture)
 
 	for (std::vector<Star>::iterator it = m_LargeStars.begin(); it != m_LargeStars.end(); ++it)
 	{
-		if ((it->GetPositionX() > 0 && it->GetPositionX() < m_WindowSizeX)
+		if ((it->GetPositionX() > 0 && it->GetPositionX() < m_WindowSizeX - 3)
 			&& (it->GetPositionY() > 0 && it->GetPositionY() < m_WindowSizeY - 3))
 		{
 			Texture.update(m_LargeStarImage, it->GetPositionX(), it->GetPositionY());
