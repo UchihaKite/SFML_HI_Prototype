@@ -8,13 +8,13 @@ class ScoreManager
 public:
 	ScoreManager(std::string FileName);
 
-	void SetUpText();
+	virtual void SetUpText();
 
-	void Update(int Score);
-	void Draw(sf::RenderWindow* Window);
+	virtual void Update(int Score);
+	virtual void Draw(sf::RenderWindow* Window);
 
-	void StoreHighScore(int Score);
-private:
+	virtual void StoreHighScore(int Score);
+protected:
 	int m_Score;
 	int m_HighScore;
 
